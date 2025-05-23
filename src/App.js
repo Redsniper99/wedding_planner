@@ -8,8 +8,6 @@ import Contact from './pages/Contact';
 import Footer from './components/Footer';
 import FloatingButtons from './components/FloatingButtons';
 import Preloader from './components/Preloader';
-import WhatsAppButton from './components/WhatsAppButton';
-import ScrollToTop from './components/ScrollToTop';
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -38,8 +36,7 @@ function App() {
             </Routes>
             <Footer />
             <FloatingButtons />
-            <WhatsAppButton />
-            <ScrollToTop />
+          
           </div>
         )}
       </AnimatePresence>
