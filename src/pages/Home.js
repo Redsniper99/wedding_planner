@@ -89,10 +89,11 @@ const Home = () => {
         animate={{ opacity: 1 }}
         transition={{ duration: 1 }}
         className={`relative w-full bg-cover bg-center pt-40 md:pt-56 overflow-hidden
-          ${heroLocked && isMobile ? 'fixed top-0 left-0 h-screen z-30' : 'relative'}
+          ${typeof window !== 'undefined' && window.innerWidth < 640 ? 'h-screen overflow-y-auto' : ''}
         `}
         style={{
           backgroundImage: 'none',
+          scrollSnapAlign: 'start',
         }}
       >
         {/* Blurred background image layer */}
@@ -112,11 +113,7 @@ const Home = () => {
           }}
         />
         <div className="absolute inset-0 bg-[#8B4513] bg-opacity-60 backdrop-blur-md" />
-        <div
-          ref={heroContentRef}
-          className={`relative flex flex-col items-center z-10 w-full h-full ${heroLocked && isMobile ? 'overflow-y-auto' : ''}`}
-          style={heroLocked && isMobile ? { maxHeight: '100vh' } : {}}
-        >
+        <div className="relative flex flex-col items-center z-10 w-full h-full">
           <div className="relative text-center text-white z-10">
             <Typography
               variant="h1"
