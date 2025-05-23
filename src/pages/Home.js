@@ -37,7 +37,7 @@ const Home = () => {
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ duration: 1 }}
+        transition={{ duration: 2 }}
         className="relative w-full bg-cover bg-center pt-40 md:pt-56"
         style={{
           backgroundImage: 'none',
@@ -96,10 +96,13 @@ const Home = () => {
               ].map((card, idx) => (
                 <Grid item xs={12} sm={4} key={card.title}>
                   <motion.div
-                    initial={{ opacity: 0, y: 40 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.7, delay: idx * 0.2, type: 'spring', stiffness: 60 }}
-                    viewport={{ once: true }}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ 
+                      duration: 0.5,
+                      delay: idx * 0.1,
+                      ease: "easeOut"
+                    }}
                   >
                     <Card
                       className="shadow-xl rounded-xl border border-[#3E2723]/20 backdrop-blur-md bg-white/70"
