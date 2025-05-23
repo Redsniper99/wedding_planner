@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
 import { Container, Typography, Grid, Card, CardContent } from '@mui/material';
 import CelebrationIcon from '@mui/icons-material/Celebration';
@@ -31,56 +31,6 @@ const Home = () => {
     },
   ];
 
-  // Only lock hero on mobile
-  const isMobile = typeof window !== 'undefined' && window.innerWidth < 640;
-  const [heroLocked, setHeroLocked] = useState(isMobile);
-  const heroContentRef = useRef(null);
-
-  useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth < 640) {
-        setHeroLocked(true);
-      } else {
-        setHeroLocked(false);
-      }
-    };
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
-
-  useEffect(() => {
-    const el = heroContentRef.current;
-    const handleScroll = () => {
-      if (!heroLocked) return;
-      if (!el) return;
-      // If scrolled to bottom, unlock hero
-      if (el.scrollTop + el.clientHeight >= el.scrollHeight - 2) {
-        setHeroLocked(false);
-      }
-    };
-    if (heroLocked && el) {
-      el.addEventListener('scroll', handleScroll);
-    }
-    return () => {
-      if (el) {
-        el.removeEventListener('scroll', handleScroll);
-      }
-    };
-  }, [heroLocked]);
-
-  // Re-lock hero if user scrolls back to top
-  useEffect(() => {
-    if (!heroLocked && heroContentRef.current) {
-      const handleWindowScroll = () => {
-        if (window.scrollY === 0) {
-          setHeroLocked(true);
-        }
-      };
-      window.addEventListener('scroll', handleWindowScroll);
-      return () => window.removeEventListener('scroll', handleWindowScroll);
-    }
-  }, [heroLocked]);
-
   return (
     <div className="min-h-screen bg-[#FDF5E6]">
       {/* Hero Section */}
@@ -88,12 +38,9 @@ const Home = () => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1 }}
-        className={`relative w-full bg-cover bg-center pt-40 md:pt-56 overflow-hidden
-          ${typeof window !== 'undefined' && window.innerWidth < 640 ? 'h-screen overflow-y-auto' : ''}
-        `}
+        className="relative w-full bg-cover bg-center pt-40 md:pt-56"
         style={{
           backgroundImage: 'none',
-          scrollSnapAlign: 'start',
         }}
       >
         {/* Blurred background image layer */}
@@ -113,7 +60,7 @@ const Home = () => {
           }}
         />
         <div className="absolute inset-0 bg-[#8B4513] bg-opacity-60 backdrop-blur-md" />
-        <div className="relative flex flex-col items-center z-10 w-full h-full">
+        <div className="relative flex flex-col items-center z-10 w-full">
           <div className="relative text-center text-white z-10">
             <Typography
               variant="h1"
@@ -127,13 +74,6 @@ const Home = () => {
             >
               Let us make your special day unforgettable
             </Typography>
-            {/* <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="bg-[#DEB887] text-[#8B4513] px-8 py-3 rounded-md text-lg font-semibold hover:bg-[#CD853F] transition-colors"
-            >
-              Get Started
-            </motion.button> */}
 
             {/* Wooden Cards Row */}
             <Grid container spacing={3} justifyContent="center" className="mb-8 mt-8">
@@ -399,8 +339,6 @@ const Home = () => {
           </div>
         </div>
       </section>
-
-      
     </div>
   );
 };

@@ -36,7 +36,7 @@ const FloatingButtons = () => {
       {showScroll && (
         <button
           onClick={handleScrollTop}
-          className="bg-[#3E2723] hover:bg-[#5D4037] text-white rounded-full shadow-lg p-4 flex items-center justify-center transition-colors duration-300"
+          className="bg-[#3E2723] hover:bg-[#5D4037] text-black rounded-full shadow-lg p-4 flex items-center justify-center transition-colors duration-300"
           aria-label="Scroll to top"
         >
           <KeyboardArrowUpIcon style={{ fontSize: 32 }} />
