@@ -17,17 +17,17 @@ const Home = () => {
     {
       name: 'Sarah & John',
       text: 'The team made our wedding day absolutely magical. Everything was perfect!',
-      image: 'https://source.unsplash.com/random/100x100?portrait=1',
+      image: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=facearea&w=100&h=100&facepad=2',
     },
     {
       name: 'Emily & Michael',
       text: 'Professional, attentive, and creative. They exceeded our expectations!',
-      image: 'https://source.unsplash.com/random/100x100?portrait=2',
+      image: 'https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=facearea&w=100&h=100&facepad=2',
     },
     {
       name: 'Lisa & David',
       text: 'Our dream wedding came true thanks to their amazing planning and execution.',
-      image: 'https://source.unsplash.com/random/100x100?portrait=3',
+      image: 'https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=facearea&w=100&h=100&facepad=2',
     },
   ];
 
@@ -38,7 +38,7 @@ const Home = () => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 2 }}
-        className="relative w-full bg-cover bg-center pt-40 md:pt-56"
+        className="relative w-full bg-cover bg-center pt-28 md:pt-56"
         style={{
           backgroundImage: 'none',
         }}
@@ -56,15 +56,23 @@ const Home = () => {
             backgroundImage: 'url(/images/bg.jpg)',
             backgroundSize: 'cover',
             backgroundPosition: 'center',
-            filter: 'blur(01px)',
+            filter: 'blur(2px)',
           }}
         />
         <div className="absolute inset-0 bg-[#8B4513] bg-opacity-60 backdrop-blur-md" />
         <div className="relative flex flex-col items-center z-10 w-full">
           <div className="relative text-center text-white z-10">
+            {/* Mobile Title */}
+            <Typography
+              variant="h2"
+              className="font-bold mb-2 mt-12 font-playfair text-lg xs:text-xl sm:text-2xl md:hidden"
+            >
+              Dream Wedding Awaits
+            </Typography>
+            {/* Desktop Title */}
             <Typography
               variant="h1"
-              className="font-bold mb-4 font-playfair text-base sm:text-2xl md:text-5xl lg:text-7xl"
+              className="font-bold mb-4 font-playfair text-base sm:text-2xl md:text-5xl lg:text-7xl hidden md:block"
             >
               Your Dream Wedding Awaits
             </Typography>
@@ -75,23 +83,79 @@ const Home = () => {
               Let us make your special day unforgettable
             </Typography>
 
+            <motion.button
+              onClick={() => window.open('https://wa.me/your-number-here', '_blank')}
+              style={{
+                backgroundImage: 'url(/images/wood.jpg)',
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                color: '#FFFFFF',
+                border: '2px solid rgba(139, 69, 19, 0.5)',
+                padding: '0.75rem 1.5rem',
+                borderRadius: '0.5rem',
+                boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.2)',
+                cursor: 'pointer',
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '0.5rem',
+                marginTop: '2rem',
+                marginBottom: '1rem',
+                fontWeight: 500,
+                fontSize: '1rem',
+                position: 'relative',
+                overflow: 'hidden',
+                textShadow: '0 1px 2px rgba(0, 0, 0, 0.3)',
+                whiteSpace: 'nowrap',
+              }}
+              whileHover={{ 
+                scale: 1.05,
+                boxShadow: '0 6px 12px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.2)',
+                transition: {
+                  scale: '0.3s ease',
+                  boxShadow: '0.3s ease'
+                }
+              }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <div style={{
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                right: 0,
+                bottom: 0,
+                backgroundColor: 'rgba(139, 69, 19, 0.4)',
+                backdropFilter: 'blur(0.5px)',
+              }} />
+              <span style={{ position: 'relative', zIndex: 1, display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                <svg
+                  className="w-5 h-5"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                </svg>
+                Let's Plan Your Dream Wedding
+              </span>
+            </motion.button>
+
             {/* Wooden Cards Row */}
-            <Grid container spacing={3} justifyContent="center" className="mb-8 mt-8">
+            <Grid container spacing={3} justifyContent="center" className="mb-20 mt-20 pb-0 md:pb-12 lg:pb-20">
               {[
                 {
                   title: 'Rustic Decor',
                   desc: 'Warm, wooden accents for a cozy celebration.',
-                  icon: <CelebrationIcon sx={{ fontSize: 64, color: '#DEB887', mb: 2 }} />,
+                  icon: <CelebrationIcon style={{ fontSize: 64, color: '#FFFFFF', marginBottom: 16 }} />,
                 },
                 {
                   title: 'Nature Venues',
                   desc: 'Celebrate in beautiful, natural settings.',
-                  icon: <NaturePeopleIcon sx={{ fontSize: 64, color: '#DEB887', mb: 2 }} />,
+                  icon: <NaturePeopleIcon style={{ fontSize: 64, color: '#FFFFFF', marginBottom: 16 }} />,
                 },
                 {
                   title: 'Handcrafted Touch',
                   desc: 'Personalized, artisanal details for your event.',
-                  icon: <HandymanIcon sx={{ fontSize: 64, color: '#DEB887', mb: 2 }} />,
+                  icon: <HandymanIcon style={{ fontSize: 64, color: '#FFFFFF', marginBottom: 16 }} />,
                 },
               ].map((card, idx) => (
                 <Grid item xs={12} sm={4} key={card.title}>
@@ -103,14 +167,20 @@ const Home = () => {
                       delay: idx * 0.1,
                       ease: "easeOut"
                     }}
+                    whileHover={{ 
+                      scale: 1.05,
+                      rotateY: 10,
+                      rotateX: 5,
+                      boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.2), 0 10px 10px -5px rgba(0, 0, 0, 0.1)",
+                      transition: { duration: 0.3 }
+                    }}
+                    style={{ perspective: 1000 }}
                   >
                     <Card
-                      className="shadow-xl rounded-xl border border-[#3E2723]/20 backdrop-blur-md bg-white/70"
+                      className="shadow-xl rounded-xl border border-[#3E2723]/20 backdrop-blur-md bg-white/70 w-64 h-48 sm:w-80 sm:h-64 md:w-[320px] md:h-96 lg:h-[28rem]"
                       sx={{
                         background: 'rgba(255,255,255,0.4)',
                         color: '#3E2723',
-                        minHeight: 300,
-                        width: 320,
                         display: 'flex',
                         flexDirection: 'column',
                         alignItems: 'center',
@@ -118,14 +188,34 @@ const Home = () => {
                         backdropFilter: 'blur(10px)',
                         border: '1.5px solid rgba(62, 39, 35, 0.2)',
                         boxShadow: '0 8px 32px 0 rgba(31, 38, 135, 0.15)',
+                        transformStyle: 'preserve-3d',
                       }}
                     >
                       <CardContent className="text-center flex flex-col items-center">
-                        {React.cloneElement(card.icon, { sx: { ...card.icon.props.sx, color: '#ffffff' } })}
-                        <Typography variant="subtitle1" className="font-playfair mb-2" sx={{ color: '#fff', fontWeight: 700, fontSize: '1.1rem' }}>
-                          {card.title}
-                        </Typography>
-                        <Typography variant="body2" sx={{ color: '#fff' }}>{card.desc}</Typography>
+                        <motion.div
+                          whileHover={{ 
+                            scale: 1.2,
+                            rotate: 360,
+                            transition: { duration: 0.5 }
+                          }}
+                        >
+                          {React.cloneElement(card.icon, { sx: { ...card.icon.props.sx, color: '#8B4513' } })}
+                        </motion.div>
+                        <motion.div
+                          whileHover={{ scale: 1.1 }}
+                          transition={{ duration: 0.2 }}
+                        >
+                          <Typography variant="subtitle1" className="font-playfair mb-2" sx={{ color: '#ffffff', fontWeight: 700, fontSize: '1.1rem' }}>
+                            {card.title}
+                          </Typography>
+                        </motion.div>
+                        <motion.div
+                          initial={{ opacity: 0.8 }}
+                          whileHover={{ opacity: 1 }}
+                          transition={{ duration: 0.2 }}
+                        >
+                          <Typography variant="body2" sx={{ color: '#ffffff' }}>{card.desc}</Typography>
+                        </motion.div>
                       </CardContent>
                     </Card>
                   </motion.div>
@@ -151,44 +241,56 @@ const Home = () => {
             {
               title: 'Wedding Planning',
               desc: 'Full-service planning and coordination to make your special day seamless and stress-free.',
-              icon: <EventAvailableIcon sx={{ fontSize: { xs: 40, sm: 48, md: 56 }, color: '#8B5CF6' }} className="mx-auto mb-2" />,
+              icon: <EventAvailableIcon sx={{ fontSize: { xs: 40, sm: 48, md: 56 }, color: '#8B4513' }} className="mx-auto mb-2" />,
             },
             {
               title: 'Venue Selection',
               desc: 'Find and secure the perfect venue that matches your vision and guest list.',
-              icon: <LocationOnIcon sx={{ fontSize: { xs: 40, sm: 48, md: 56 }, color: '#F59E42' }} className="mx-auto mb-2" />,
+              icon: <LocationOnIcon sx={{ fontSize: { xs: 40, sm: 48, md: 56 }, color: '#8B4513' }} className="mx-auto mb-2" />,
             },
             {
               title: 'Catering & Menu',
               desc: 'Customizable menus and exquisite catering to delight every guest.',
-              icon: <RestaurantIcon sx={{ fontSize: { xs: 40, sm: 48, md: 56 }, color: '#10B981' }} className="mx-auto mb-2" />,
+              icon: <RestaurantIcon sx={{ fontSize: { xs: 40, sm: 48, md: 56 }, color: '#8B4513' }} className="mx-auto mb-2" />,
             },
             {
               title: 'Photography & Videography',
               desc: 'Capture every magical moment with our professional photo and video team.',
-              icon: <PhotoCameraIcon sx={{ fontSize: { xs: 40, sm: 48, md: 56 }, color: '#F43F5E' }} className="mx-auto mb-2" />,
+              icon: <PhotoCameraIcon sx={{ fontSize: { xs: 40, sm: 48, md: 56 }, color: '#8B4513' }} className="mx-auto mb-2" />,
             },
             {
               title: 'Entertainment & Music',
               desc: 'Live bands, DJs, and entertainment to keep your guests celebrating all night.',
-              icon: <MusicNoteIcon sx={{ fontSize: { xs: 40, sm: 48, md: 56 }, color: '#FBBF24' }} className="mx-auto mb-2" />,
+              icon: <MusicNoteIcon sx={{ fontSize: { xs: 40, sm: 48, md: 56 }, color: '#8B4513' }} className="mx-auto mb-2" />,
             },
             {
               title: 'Decor & Styling',
               desc: 'Personalized decor, floral arrangements, and styling for a beautiful, unique celebration.',
-              icon: <LocalFloristIcon sx={{ fontSize: { xs: 40, sm: 48, md: 56 }, color: '#22D3EE' }} className="mx-auto mb-2" />,
+              icon: <LocalFloristIcon sx={{ fontSize: { xs: 40, sm: 48, md: 56 }, color: '#8B4513' }} className="mx-auto mb-2" />,
             },
           ].map((service, idx) => (
-            <div
+            <motion.div
               key={service.title}
-              className={
-                `p-6 md:p-10 lg:p-16 bg-white rounded-2xl shadow-xl flex flex-col items-center `
-              }
+              className="p-6 md:p-10 lg:p-16 bg-white rounded-2xl shadow-xl flex flex-col items-center"
+              whileHover={{ 
+                scale: 1.05,
+                boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)",
+                transition: { duration: 0.3 }
+              }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: idx * 0.1 }}
+              viewport={{ once: true }}
             >
-              {service.icon}
+              <motion.div
+                whileHover={{ rotate: 360 }}
+                transition={{ duration: 0.5 }}
+              >
+                {service.icon}
+              </motion.div>
               <h3 className="mt-6 md:mt-8 text-lg md:text-xl font-bold text-gray-900 font-playfair">{service.title}</h3>
               <p className="mt-4 md:mt-5 text-sm md:text-base text-gray-600 font-playfair">{service.desc}</p>
-            </div>
+            </motion.div>
           ))}
         </div>
       </Container>

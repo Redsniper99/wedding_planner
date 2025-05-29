@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { AppBar, Toolbar, IconButton, Button } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
@@ -9,6 +9,8 @@ const Navbar = () => {
   //const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const location = useLocation();
+  const isAboutOrContact = location.pathname === '/about' || location.pathname === '/contact';
 
   useEffect(() => {
     const handleScroll = () => {
@@ -54,7 +56,7 @@ const Navbar = () => {
       <Toolbar className="justify-between" sx={{ minHeight: { xs: 64, md: 80 } }}>
         <Link to="/" className="flex items-center">
           <img
-            src={scrolled ? "/images/logo_2.png" : "/images/logo_1.png"}
+            src={isAboutOrContact ? "/images/logo_2.png" : (scrolled ? "/images/logo_2.png" : "/images/logo_1.png")}
             alt="Wedding Planner Logo"
             className={`h-12 w-auto mr-2 transition-all duration-500 ${scrolled ? 'opacity-100 scale-100' : 'opacity-100 scale-100'}`}
             style={{ transition: 'opacity 0.5s, transform 0.5s' }}
@@ -69,12 +71,12 @@ const Navbar = () => {
               component={Link}
               to={item.path}
               sx={{
-                color: scrolled ? '#222' : 'white',
+                color: isAboutOrContact ? '#222' : (scrolled ? '#222' : 'white'),
                 fontWeight: 400,
                 fontSize: '1.125rem',
                 fontFamily: '"Playfair Display", serif',
                 '&:hover': {
-                  color: scrolled ? '#8B4513' : '#A1887F',
+                  color: '#8B4513',
                   backgroundColor: 'transparent'
                 }
               }}
@@ -131,7 +133,7 @@ const Navbar = () => {
               <div className="flex justify-between items-center px-6">
                 <Link to="/" className="flex items-center" onClick={() => setMobileMenuOpen(false)}>
                   <img
-                    src={scrolled ? "/images/logo_2.png" : "/images/logo_2.png"}
+                    src={isAboutOrContact ? "/images/logo_black.png" : "/images/logo_2.png"}
                     alt="Wedding Planner Logo"
                     className="h-8 w-auto mr-2"
                   />
@@ -145,7 +147,7 @@ const Navbar = () => {
                   <Link
                     key={item.text}
                     to={item.path}
-                    className="flex justify-center items-center w-full max-w-xs rounded-xl shadow-md my-2 py-3 px-4 text-base font-semibold text-black transition-all duration-200 hover:text-[#8B5CF6] focus:text-[#8B5CF6] text-center backdrop-blur-md"
+                    className="flex justify-center items-center w-full max-w-xs rounded-xl shadow-md my-2 py-3 px-4 text-base font-semibold text-black transition-all duration-200 hover:text-[#8B4513] focus:text-[#8B4513] text-center backdrop-blur-md"
                     style={{ background: 'rgba(255,255,255,0.8)' }}
                     onClick={() => setMobileMenuOpen(false)}
                   >

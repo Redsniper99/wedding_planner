@@ -10,7 +10,7 @@ const Footer = () => {
     {
       title: 'Services',
       links: [
-        { text: 'Wedding Planning', href: '#' },
+        { text: 'Jail', href: '#' },
         { text: 'Venue Selection', href: '#' },
         { text: 'Catering', href: '#' },
         { text: 'Photography', href: '#' },
@@ -49,7 +49,7 @@ const Footer = () => {
           {/* Company Info */}
           <Grid item xs={12} md={4}>
             <Typography variant="h5" className="font-bold mb-4" sx={{ color: '#fff' }}>
-              Wedding Planner
+              Jail
             </Typography>
             <Typography variant="body2" className="mb-4" sx={{ color: '#fff' }}>
               Making your dream wedding a reality with our expert planning services and attention to detail.
@@ -96,7 +96,7 @@ const Footer = () => {
         {/* Bottom Bar */}
         <Box className="border-t border-gray-800 mt-12 pt-8">
           <Typography variant="body2" className="text-center" sx={{ color: '#fff' }}>
-            © {new Date().getFullYear()} Wedding Planner. All rights reserved.
+            © {new Date().getFullYear()} Jail. All rights reserved.
           </Typography>
         </Box>
       </Container>

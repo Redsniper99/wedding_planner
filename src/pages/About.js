@@ -1,170 +1,116 @@
 import React from 'react';
-import { Container, Typography, Grid, Card, CardContent, CardMedia } from '@mui/material';
-import { motion } from 'framer-motion';
+import { Container, Typography, Button } from '@mui/material';
 
 const About = () => {
-  const teamMembers = [
-    {
-      name: 'Jane Smith',
-      role: 'Lead Wedding Planner',
-      image: 'https://source.unsplash.com/random/400x400?portrait=1',
-      description: 'With over 10 years of experience in wedding planning, Jane brings creativity and expertise to every event.',
-    },
-    {
-      name: 'Michael Johnson',
-      role: 'Event Coordinator',
-      image: 'https://source.unsplash.com/random/400x400?portrait=2',
-      description: 'Michael specializes in creating seamless experiences and managing complex logistics.',
-    },
-    {
-      name: 'Sarah Williams',
-      role: 'Design Specialist',
-      image: 'https://source.unsplash.com/random/400x400?portrait=3',
-      description: 'Sarah has an eye for detail and creates stunning visual experiences for our clients.',
-    },
-  ];
-
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Hero Section */}
-      <div className="bg-pink-600 text-white py-20">
-        <Container>
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            <Typography variant="h1" className="text-4xl md:text-6xl font-bold text-center mb-6">
-              About Us
-            </Typography>
-            <Typography variant="h5" className="text-center max-w-3xl mx-auto">
-              We are passionate about creating unforgettable wedding experiences that reflect your unique love story.
-            </Typography>
-          </motion.div>
-        </Container>
-      </div>
-
-      {/* Our Story Section */}
-      <Container className="py-20">
-        <Grid container spacing={8} alignItems="center">
-          <Grid item xs={12} md={6}>
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5 }}
-            >
-              <Typography variant="h2" className="text-3xl font-bold mb-6">
-                Our Story
+    <section className="min-h-screen bg-[#FDF5E6] py-12 md:py-25 mt-24">
+      <Container maxWidth="lg">
+        {/* Owner Information Section */}
+        <div className="mb-5">
+          <div className="flex flex-col md:flex-row items-center justify-center gap-8">
+            {/* Owner Image */}
+            <div className="w-48 h-48 md:w-64 md:h-64 rounded-full overflow-hidden border-4 border-[#DEB887] shadow-xl">
+              <img
+                src="/images/owner.jpg"
+                alt="Owner"
+                className="w-full h-full object-cover"
+              />
+            </div>
+            {/* Owner Description */}
+            <div className="max-w-xl text-center md:text-left">
+              <Typography variant="h3" className="font-playfair font-bold text-[#8B4513] text-2xl md:text-3xl mb-4">
+                Meet Our Founder
               </Typography>
-              <Typography variant="body1" className="mb-4">
+              <Typography className="text-[#6D4C41] font-playfair text-lg md:text-xl mb-4">
+                Sarah Johnson
+              </Typography>
+              <Typography className="text-[#6D4C41] font-playfair text-base md:text-lg leading-relaxed">
+                With over 15 years of experience in the wedding industry, Sarah has dedicated her life to creating magical moments for couples. Her passion for design and attention to detail has made her one of the most sought-after wedding planners in the region.
+              </Typography>
+            </div>
+          </div>
+        </div>
+
+        <div className="flex flex-col md:flex-row items-center justify-between gap-8">
+          {/* Images Section */}
+          <div className="flex w-full md:w-1/2 gap-4 relative">
+            <div className="flex w-full gap-4">
+              <div className="w-1/3 h-64 sm:h-80 md:h-96 rounded-2xl overflow-hidden relative">
+                <img
+                  src="/images/s1.jpg"
+                  alt="About 1"
+                  className="w-full h-full object-cover hover:scale-110 transition-transform duration-500"
+                />
+              </div>
+              <div className="w-1/3 h-48 sm:h-64 md:h-80 rounded-2xl overflow-hidden relative">
+                <img
+                  src="/images/s2.jpg"
+                  alt="About 2"
+                  className="w-full h-full object-cover hover:scale-110 transition-transform duration-500"
+                />
+              </div>
+              <div className="w-1/3 h-56 sm:h-72 md:h-88 rounded-2xl overflow-hidden relative">
+                <img
+                  src="/images/s3.jpg"
+                  alt="About 3"
+                  className="w-full h-full object-cover hover:scale-110 transition-transform duration-500"
+                />
+              </div>
+            </div>
+            {/* Decorative Elements */}
+            <div className="absolute -right-6 -bottom-6 z-0 opacity-60 hidden md:block">
+              <svg width={134} height={106} viewBox="0 0 134 106" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="1.66667" cy={104} r="1.66667" transform="rotate(-90 1.66667 104)" fill="#8B4513" />
+                <circle cx="16.3333" cy={104} r="1.66667" transform="rotate(-90 16.3333 104)" fill="#8B4513" />
+                <circle cx={31} cy={104} r="1.66667" transform="rotate(-90 31 104)" fill="#8B4513" />
+                <circle cx="45.6667" cy={104} r="1.66667" transform="rotate(-90 45.6667 104)" fill="#8B4513" />
+                <circle cx="60.3334" cy={104} r="1.66667" transform="rotate(-90 60.3334 104)" fill="#8B4513" />
+                <circle cx="88.6667" cy={104} r="1.66667" transform="rotate(-90 88.6667 104)" fill="#8B4513" />
+                <circle cx="117.667" cy={104} r="1.66667" transform="rotate(-90 117.667 104)" fill="#8B4513" />
+                <circle cx="74.6667" cy={104} r="1.66667" transform="rotate(-90 74.6667 104)" fill="#8B4513" />
+                <circle cx={103} cy={104} r="1.66667" transform="rotate(-90 103 104)" fill="#8B4513" />
+                <circle cx={132} cy={104} r="1.66667" transform="rotate(-90 132 104)" fill="#8B4513" />
+              </svg>
+            </div>
+          </div>
+          {/* Glassy Content Card */}
+          <div className="w-full md:w-1/2 flex items-center justify-center">
+            <div className="rounded-3xl shadow-2xl border border-[#DEB887]/30 bg-white/70 backdrop-blur-lg p-8 md:p-12 max-w-xl w-full flex flex-col gap-6 text-center md:text-left items-center md:items-start">
+              <Typography variant="h4" className="font-playfair font-bold text-[#8B4513] text-2xl md:text-4xl mb-2 md:mb-4">
+                About Us
+              </Typography>
+              <Typography className="text-[#6D4C41] font-playfair text-base md:text-lg leading-relaxed">
+                We are passionate about creating unforgettable wedding experiences that reflect your unique love story. Our team of experienced professionals works tirelessly to ensure that every detail is perfect, from the initial consultation to the final celebration.
+              </Typography>
+              <Typography className="text-[#6D4C41] font-playfair text-base md:text-lg leading-relaxed">
                 Founded in 2015, our wedding planning company has been dedicated to making dreams come true. We believe that every couple deserves a wedding that perfectly reflects their unique love story.
               </Typography>
-              <Typography variant="body1" className="mb-4">
-                Our team of experienced professionals works tirelessly to ensure that every detail is perfect, from the initial consultation to the final celebration.
-              </Typography>
-              <Typography variant="body1">
+              <Typography className="text-[#6D4C41] font-playfair text-base md:text-lg leading-relaxed">
                 We take pride in our attention to detail, creative approach, and commitment to excellence in every wedding we plan.
               </Typography>
-            </motion.div>
-          </Grid>
-          <Grid item xs={12} md={6}>
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5 }}
-            >
-              <img
-                src="https://source.unsplash.com/random/800x600?wedding-team"
-                alt="Our Team"
-                className="rounded-lg shadow-lg w-full"
-              />
-            </motion.div>
-          </Grid>
-        </Grid>
-      </Container>
-
-      {/* Team Section */}
-      <div className="bg-gray-100 py-20">
-        <Container>
-          <Typography variant="h2" className="text-3xl font-bold text-center mb-12">
-            Meet Our Team
-          </Typography>
-          <Grid container spacing={4}>
-            {teamMembers.map((member, index) => (
-              <Grid item xs={12} md={4} key={index}>
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                >
-                  <Card className="h-full">
-                    <CardMedia
-                      component="img"
-                      height="300"
-                      image={member.image}
-                      alt={member.name}
-                    />
-                    <CardContent>
-                      <Typography variant="h5" className="font-semibold mb-2">
-                        {member.name}
-                      </Typography>
-                      <Typography variant="subtitle1" color="primary" className="mb-2">
-                        {member.role}
-                      </Typography>
-                      <Typography variant="body2" color="textSecondary">
-                        {member.description}
-                      </Typography>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              </Grid>
-            ))}
-          </Grid>
-        </Container>
-      </div>
-
-      {/* Values Section */}
-      <Container className="py-20">
-        <Typography variant="h2" className="text-3xl font-bold text-center mb-12">
-          Our Values
-        </Typography>
-        <Grid container spacing={4}>
-          {[
-            {
-              title: 'Excellence',
-              description: 'We strive for excellence in every detail of our service.',
-            },
-            {
-              title: 'Creativity',
-              description: 'We bring innovative ideas to make your wedding unique.',
-            },
-            {
-              title: 'Dedication',
-              description: 'We are committed to making your dream wedding a reality.',
-            },
-          ].map((value, index) => (
-            <Grid item xs={12} md={4} key={index}>
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
+              <Button
+                variant="contained"
+                className="bg-[#8B4513] hover:bg-[#DEB887] text-white font-playfair rounded-full px-8 py-3 shadow-lg transition-all duration-300 mt-2"
+                sx={{
+                  backgroundColor: '#8B4513',
+                  borderRadius: '9999px',
+                  fontFamily: 'Playfair Display, serif',
+                  fontWeight: 700,
+                  fontSize: '1.1rem',
+                  boxShadow: '0 8px 32px 0 rgba(222, 184, 135, 0.15)',
+                  '&:hover': {
+                    backgroundColor: '#DEB887',
+                    color: '#3E2723',
+                  },
+                }}
               >
-                <Card className="h-full text-center">
-                  <CardContent>
-                    <Typography variant="h5" className="font-semibold mb-2">
-                      {value.title}
-                    </Typography>
-                    <Typography variant="body1" color="textSecondary">
-                      {value.description}
-                    </Typography>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            </Grid>
-          ))}
-        </Grid>
+                Get Started
+              </Button>
+            </div>
+          </div>
+        </div>
       </Container>
-    </div>
+    </section>
   );
 };
 
