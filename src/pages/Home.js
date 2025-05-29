@@ -53,7 +53,7 @@ const Home = () => {
             right: 0,
             top: 0,
             bottom: 0,
-            backgroundImage: 'url(/images/bg.jpg)',
+            backgroundImage: 'url(/images/bg1.jpg)',
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             filter: 'blur(2px)',
