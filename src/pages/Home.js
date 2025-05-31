@@ -151,7 +151,11 @@ const Home = () => {
       {/* Services Section */}
       <Container className="py-10 sm:py-16 lg:py-20">
         <div className="text-center">
-          <Typography variant="h2" className="text-3xl font-bold leading-tight text-gray-900 sm:text-4xl xl:text-5xl font-playfair">
+          <Typography 
+            variant="h2" 
+            className="font-bold leading-tight text-gray-900 font-playfair"
+            style={{ fontSize: '2.5rem' }}
+          >
             Make every step user-centric
           </Typography>
           <Typography className="mt-4 text-base leading-7 text-gray-600 sm:mt-8 font-playfair">
@@ -219,10 +223,19 @@ const Home = () => {
 
       {/* Modern Packages Section */}
       <Container className="py-20">
-        <Typography variant="h2" className="text-4xl font-bold text-center mb-4 text-[#8B4513] font-playfair">
+        <Typography 
+          variant="h2" 
+          className="font-bold text-center mb-4 text-[#8B4513] font-playfair"
+          style={{ fontSize: '2.5rem' }}
+        >
           Our Packages
         </Typography>
-        <Typography className="text-center mb-16 text-[#6D4C41]">Choose the perfect plan for your special day</Typography>
+        <Typography 
+          className="text-center mb-16 text-[#6D4C41]"
+          style={{ fontSize: '0.875rem' }}
+        >
+          Choose the perfect plan for your special day
+        </Typography>
         <Grid container spacing={4} justifyContent="center" className="mt-8">
           {[
             {
@@ -309,8 +322,20 @@ const Home = () => {
       <section className="py-10 sm:py-16 lg:py-20 relative">
         <div className="px-2 sm:px-4 mx-auto max-w-7xl sm:px-6 lg:px-8 flex flex-col items-center">
           <div className="text-center">
-            <Typography variant="body1" className="text-base sm:text-lg font-medium text-gray-600 font-playfair">2,157 people have said how good Rareblocks</Typography>
-            <Typography variant="h2" className="mt-4 text-2xl sm:text-3xl font-bold text-gray-900 sm:text-4xl xl:text-5xl font-playfair">Our happy clients say about us</Typography>
+            <Typography 
+              variant="body1" 
+              className="font-medium text-gray-600 font-playfair"
+              style={{ fontSize: '0.875rem' }}
+            >
+              2,157 people have said how good Rareblocks
+            </Typography>
+            <Typography 
+              variant="h2" 
+              className="mt-4 font-bold text-gray-900 font-playfair"
+              style={{ fontSize: '2.5rem' }}
+            >
+              Our happy clients say about us
+            </Typography>
           </div>
           <div className="mt-8 text-center md:mt-16 md:order-3">
             <button
