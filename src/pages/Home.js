@@ -1,9 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Container, Typography, Grid, Card, CardContent } from '@mui/material';
-import CelebrationIcon from '@mui/icons-material/Celebration';
-import NaturePeopleIcon from '@mui/icons-material/NaturePeople';
-import HandymanIcon from '@mui/icons-material/Handyman';
 import EventAvailableIcon from '@mui/icons-material/EventAvailable';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import RestaurantIcon from '@mui/icons-material/Restaurant';
@@ -38,34 +35,35 @@ const Home = () => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 2 }}
-        className="relative w-full bg-cover bg-center pt-28 md:pt-56"
+        className="relative w-full bg-cover bg-center h-screen flex items-center justify-center pt-20"
         style={{
           backgroundImage: 'none',
         }}
       >
-        {/* Blurred background image layer */}
-        <div
-          className="absolute inset-0 z-0"
-          style={{
-            width: '100%',
-            height: '100%',
-            left: 0,
-            right: 0,
-            top: 0,
-            bottom: 0,
-            backgroundImage: 'url(/images/bg1.jpg)',
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            filter: 'blur(2px)',
-          }}
-        />
+        {/* Video background */}
+        <div className="absolute inset-0 z-0 overflow-hidden">
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="absolute min-w-full min-h-full object-cover"
+            style={{
+              width: '100%',
+              height: '100%',
+              objectFit: 'cover',
+            }}
+          >
+            <source src="/video/bg.mp4" type="video/mp4" />
+          </video>
+        </div>
         <div className="absolute inset-0 bg-[#8B4513] bg-opacity-60 backdrop-blur-md" />
-        <div className="relative flex flex-col items-center z-10 w-full">
+        <div className="relative flex flex-col items-center z-10 w-full -mt-20">
           <div className="relative text-center text-white z-10">
             {/* Mobile Title */}
             <Typography
               variant="h2"
-              className="font-bold mb-2 mt-12 font-playfair text-lg xs:text-xl sm:text-2xl md:hidden"
+              className="font-bold mb-2 font-playfair text-lg xs:text-xl sm:text-2xl md:hidden"
             >
               Dream Wedding Awaits
             </Typography>
@@ -138,90 +136,6 @@ const Home = () => {
                 Let's Plan Your Dream Wedding
               </span>
             </motion.button>
-
-            {/* Wooden Cards Row */}
-            <Grid container spacing={3} justifyContent="center" className="mb-20 mt-20 pb-0 md:pb-12 lg:pb-20">
-              {[
-                {
-                  title: 'Rustic Decor',
-                  desc: 'Warm, wooden accents for a cozy celebration.',
-                  icon: <CelebrationIcon style={{ fontSize: 64, color: '#FFFFFF', marginBottom: 16 }} />,
-                },
-                {
-                  title: 'Nature Venues',
-                  desc: 'Celebrate in beautiful, natural settings.',
-                  icon: <NaturePeopleIcon style={{ fontSize: 64, color: '#FFFFFF', marginBottom: 16 }} />,
-                },
-                {
-                  title: 'Handcrafted Touch',
-                  desc: 'Personalized, artisanal details for your event.',
-                  icon: <HandymanIcon style={{ fontSize: 64, color: '#FFFFFF', marginBottom: 16 }} />,
-                },
-              ].map((card, idx) => (
-                <Grid item xs={12} sm={4} key={card.title}>
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ 
-                      duration: 0.5,
-                      delay: idx * 0.1,
-                      ease: "easeOut"
-                    }}
-                    whileHover={{ 
-                      scale: 1.05,
-                      rotateY: 10,
-                      rotateX: 5,
-                      boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.2), 0 10px 10px -5px rgba(0, 0, 0, 0.1)",
-                      transition: { duration: 0.3 }
-                    }}
-                    style={{ perspective: 1000 }}
-                  >
-                    <Card
-                      className="shadow-xl rounded-xl border border-[#3E2723]/20 backdrop-blur-md bg-white/70 w-64 h-48 sm:w-80 sm:h-64 md:w-[320px] md:h-96 lg:h-[28rem]"
-                      sx={{
-                        background: 'rgba(255,255,255,0.4)',
-                        color: '#3E2723',
-                        display: 'flex',
-                        flexDirection: 'column',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        backdropFilter: 'blur(10px)',
-                        border: '1.5px solid rgba(62, 39, 35, 0.2)',
-                        boxShadow: '0 8px 32px 0 rgba(31, 38, 135, 0.15)',
-                        transformStyle: 'preserve-3d',
-                      }}
-                    >
-                      <CardContent className="text-center flex flex-col items-center">
-                        <motion.div
-                          whileHover={{ 
-                            scale: 1.2,
-                            rotate: 360,
-                            transition: { duration: 0.5 }
-                          }}
-                        >
-                          {React.cloneElement(card.icon, { sx: { ...card.icon.props.sx, color: '#8B4513' } })}
-                        </motion.div>
-                        <motion.div
-                          whileHover={{ scale: 1.1 }}
-                          transition={{ duration: 0.2 }}
-                        >
-                          <Typography variant="subtitle1" className="font-playfair mb-2" sx={{ color: '#ffffff', fontWeight: 700, fontSize: '1.1rem' }}>
-                            {card.title}
-                          </Typography>
-                        </motion.div>
-                        <motion.div
-                          initial={{ opacity: 0.8 }}
-                          whileHover={{ opacity: 1 }}
-                          transition={{ duration: 0.2 }}
-                        >
-                          <Typography variant="body2" sx={{ color: '#ffffff' }}>{card.desc}</Typography>
-                        </motion.div>
-                      </CardContent>
-                    </Card>
-                  </motion.div>
-                </Grid>
-              ))}
-            </Grid>
           </div>
         </div>
       </motion.div>
