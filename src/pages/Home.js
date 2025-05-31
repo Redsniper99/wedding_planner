@@ -63,7 +63,11 @@ const Home = () => {
             {/* Mobile Title */}
             <Typography
               variant="h2"
-              className="font-bold mb-2 font-playfair text-base xs:text-lg sm:text-xl md:hidden"
+              className="font-bold mb-2 font-playfair md:hidden"
+              style={{
+                fontSize: '5.5rem',
+                lineHeight: '1.2'
+              }}
             >
               <span className="block">Dream</span>
               <span className="block">Wedding</span>
