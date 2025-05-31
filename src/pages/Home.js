@@ -65,7 +65,9 @@ const Home = () => {
               variant="h2"
               className="font-bold mb-2 font-playfair text-base xs:text-lg sm:text-xl md:hidden"
             >
-              Dream Wedding Awaits
+              <span className="block">Dream</span>
+              <span className="block">Wedding</span>
+              <span className="block">Awaits</span>
             </Typography>
             {/* Desktop Title */}
             <Typography
