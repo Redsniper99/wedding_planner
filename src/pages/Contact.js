@@ -83,7 +83,7 @@ const Contact = () => {
                         (+62)81 414 257 9980
                       </p>
                     </div>
-                  </div>
+      </div>
 
                   <div className="flex items-start">
                     <div className="mr-6 flex h-[60px] w-[60px] shrink-0 items-center justify-center overflow-hidden rounded bg-primary/5 text-primary sm:h-[70px] sm:w-[70px]">
@@ -946,22 +946,22 @@ const Contact = () => {
                   />
                   <div className="mt-6">
                     <button
-                      type="submit"
+                        type="submit"
                       style={{ 
                         backgroundColor: '#8B4513',
                         borderColor: '#8B4513',
                         color: 'white'
                       }}
                       className="w-full rounded-md border-2 px-8 py-3 text-base font-medium transition duration-300 ease-in-out hover:bg-[#A0522D] hover:shadow-lg"
-                    >
-                      Send Message
+                      >
+                        Send Message
                     </button>
                   </div>
                 </form>
               </div>
-            </div>
-          </div>
-        </div>
+                        </div>
+                    </div>
+    </div>
       </section>
     </>
   );

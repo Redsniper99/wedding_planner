@@ -58,12 +58,12 @@ const Home = () => {
           </video>
         </div>
         <div className="absolute inset-0 bg-[#8B4513] bg-opacity-60 backdrop-blur-md" />
-        <div className="relative flex flex-col items-center z-10 w-full -mt-20">
-          <div className="relative text-center text-white z-10">
+        <div className="relative flex flex-col items-center z-10 w-full -mt-20 px-6 sm:px-8 md:px-4">
+          <div className="relative text-center text-white z-10 w-full max-w-[85%] sm:max-w-[70%] md:max-w-[60%] lg:max-w-[50%]">
             {/* Mobile Title */}
             <Typography
               variant="h2"
-              className="font-bold mb-2 font-playfair text-lg xs:text-xl sm:text-2xl md:hidden"
+              className="font-bold mb-2 font-playfair text-base xs:text-lg sm:text-xl md:hidden px-4"
             >
               Dream Wedding Awaits
             </Typography>
@@ -76,7 +76,7 @@ const Home = () => {
             </Typography>
             <Typography
               variant="h5"
-              className="mb-8 font-playfair text-xs sm:text-base md:text-2xl"
+              className="mb-8 font-playfair text-xs sm:text-sm md:text-2xl px-4"
             >
               Let us make your special day unforgettable
             </Typography>
@@ -89,21 +89,23 @@ const Home = () => {
                 backgroundPosition: 'center',
                 color: '#FFFFFF',
                 border: '2px solid rgba(139, 69, 19, 0.5)',
-                padding: '0.75rem 1.5rem',
+                padding: '0.5rem 1.5rem',
                 borderRadius: '0.5rem',
                 boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.2)',
                 cursor: 'pointer',
                 display: 'inline-flex',
                 alignItems: 'center',
                 gap: '0.5rem',
-                marginTop: '2rem',
+                marginTop: '1.5rem',
                 marginBottom: '1rem',
                 fontWeight: 500,
-                fontSize: '1rem',
+                fontSize: '0.875rem',
                 position: 'relative',
                 overflow: 'hidden',
                 textShadow: '0 1px 2px rgba(0, 0, 0, 0.3)',
                 whiteSpace: 'nowrap',
+                width: '100%',
+                justifyContent: 'center'
               }}
               whileHover={{ 
                 scale: 1.05,
