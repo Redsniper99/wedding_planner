@@ -58,12 +58,12 @@ const Home = () => {
           </video>
         </div>
         <div className="absolute inset-0 bg-[#8B4513] bg-opacity-60 backdrop-blur-md" />
-        <div className="relative flex flex-col items-center z-10 w-full -mt-20 px-6 sm:px-8 md:px-4">
-          <div className="relative text-center text-white z-10 w-full max-w-[85%] sm:max-w-[70%] md:max-w-[60%] lg:max-w-[50%]">
+        <div className="relative flex flex-col items-center z-10 w-full -mt-20">
+          <div className="relative text-center text-white z-10">
             {/* Mobile Title */}
             <Typography
               variant="h2"
-              className="font-bold mb-2 font-playfair text-base xs:text-lg sm:text-xl md:hidden px-4"
+              className="font-bold mb-2 font-playfair text-base xs:text-lg sm:text-xl md:hidden"
             >
               Dream Wedding Awaits
             </Typography>
@@ -76,7 +76,7 @@ const Home = () => {
             </Typography>
             <Typography
               variant="h5"
-              className="mb-8 font-playfair text-xs sm:text-sm md:text-2xl px-4"
+              className="mb-8 font-playfair text-[8px] xs:text-[8px] sm:text-sm md:text-2xl"
             >
               Let us make your special day unforgettable
             </Typography>
@@ -89,7 +89,7 @@ const Home = () => {
                 backgroundPosition: 'center',
                 color: '#FFFFFF',
                 border: '2px solid rgba(139, 69, 19, 0.5)',
-                padding: '0.5rem 1.5rem',
+                padding: '0.5rem 1rem',
                 borderRadius: '0.5rem',
                 boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.2)',
                 cursor: 'pointer',
@@ -104,8 +104,8 @@ const Home = () => {
                 overflow: 'hidden',
                 textShadow: '0 1px 2px rgba(0, 0, 0, 0.3)',
                 whiteSpace: 'nowrap',
-                width: '100%',
-                justifyContent: 'center'
+                width: 'auto',
+                minWidth: 'fit-content',
               }}
               whileHover={{ 
                 scale: 1.05,
