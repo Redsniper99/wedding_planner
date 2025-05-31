@@ -94,7 +94,7 @@ const Navbar = () => {
             aria-label="open drawer"
             edge="start"
             onClick={() => setMobileMenuOpen(true)}
-            sx={{ color: scrolled ? '#222' : 'white' }}
+            sx={{ color: isAboutOrContact ? '#222' : (scrolled ? '#222' : 'white') }}
           >
             <MenuIcon />
           </IconButton>
@@ -123,8 +123,8 @@ const Navbar = () => {
             />
             {/* Menu Card */}
             <motion.div
-              className="relative w-full max-w-md mx-auto mt-4 rounded-2xl shadow-2xl border border-gray-200 backdrop-blur-md"
-              style={{ background: 'rgba(255,255,255,0.8)' }}
+              className="relative w-full max-w-md mx-auto mt-4 rounded-2xl shadow-2xl border border-gray-200"
+              style={{ background: 'white' }}
               initial={{ y: -40, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               exit={{ y: -40, opacity: 0 }}
@@ -133,9 +133,9 @@ const Navbar = () => {
               <div className="flex justify-between items-center px-6">
                 <Link to="/" className="flex items-center" onClick={() => setMobileMenuOpen(false)}>
                   <img
-                    src={isAboutOrContact ? "/images/logo_black.png" : "/images/logo_2.png"}
+                    src={isAboutOrContact ? "/images/logo_2.png" : "/images/logo_2.png"}
                     alt="Wedding Planner Logo"
-                    className="h-8 w-auto mr-2"
+                    className="h-6 w-auto mr-2"
                   />
                 </Link>
                 <IconButton onClick={() => setMobileMenuOpen(false)}>
@@ -147,8 +147,11 @@ const Navbar = () => {
                   <Link
                     key={item.text}
                     to={item.path}
-                    className="flex justify-center items-center w-full max-w-xs rounded-xl shadow-md my-2 py-3 px-4 text-base font-semibold text-black transition-all duration-200 hover:text-[#8B4513] focus:text-[#8B4513] text-center backdrop-blur-md"
-                    style={{ background: 'rgba(255,255,255,0.8)' }}
+                    className="flex justify-center items-center w-full max-w-xs rounded-xl my-2 py-3 px-4 text-base font-semibold text-black transition-all duration-200 hover:text-[#8B4513] focus:text-[#8B4513] text-center"
+                    style={{ 
+                      background: 'white',
+                      boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06), 0 0 0 1px rgba(0, 0, 0, 0.05)'
+                    }}
                     onClick={() => setMobileMenuOpen(false)}
                   >
                     {item.text.charAt(0).toUpperCase() + item.text.slice(1).toLowerCase()}

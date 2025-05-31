@@ -8,10 +8,22 @@ const Contact = () => {
           <div className="flex flex-wrap justify-center lg:justify-between">
             <div className="w-full px-4 lg:w-1/2 xl:w-6/12">
               <div className="mb-12 max-w-[570px] mx-auto lg:mx-0 lg:mb-0">
-                <span className="mb-4 block text-base font-semibold text-primary">
+                <span 
+                  className="mb-4 block font-semibold text-primary"
+                  style={{ 
+                    fontSize: '1.5rem',
+                    lineHeight: '1.2'
+                  }}
+                >
                   Contact Us
                 </span>
-                <h2 className="mb-6 text-[32px] font-bold uppercase text-dark dark:text-white sm:text-[40px] lg:text-[36px] xl:text-[40px]">
+                <h2 
+                  className="mb-6 font-bold uppercase text-dark dark:text-white"
+                  style={{ 
+                    fontSize: '2.0rem',
+                    lineHeight: '1.2'
+                  }}
+                >
                   GET IN TOUCH WITH US
                 </h2>
                 <p className="mb-12 text-base leading-relaxed text-body-color dark:text-dark-6">
@@ -83,7 +95,7 @@ const Contact = () => {
                         (+62)81 414 257 9980
                       </p>
                     </div>
-      </div>
+                  </div>
 
                   <div className="flex items-start">
                     <div className="mr-6 flex h-[60px] w-[60px] shrink-0 items-center justify-center overflow-hidden rounded bg-primary/5 text-primary sm:h-[70px] sm:w-[70px]">
@@ -959,9 +971,9 @@ const Contact = () => {
                   </div>
                 </form>
               </div>
-                        </div>
-                    </div>
-    </div>
+            </div>
+          </div>
+        </div>
       </section>
     </>
   );
