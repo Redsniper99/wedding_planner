@@ -147,7 +147,7 @@ const Navbar = () => {
                   <Link
                     key={item.text}
                     to={item.path}
-                    className="flex justify-center items-center w-full max-w-xs rounded-xl my-2 py-3 px-4 text-base font-semibold text-black transition-all duration-200 hover:text-[#8B4513] focus:text-[#8B4513] text-center"
+                    className="flex justify-center items-center w-full max-w-xs rounded-xl my-2 py-3 px-4 text-base font-semibold text-black transition-all duration-200 hover:text-[#8B4513] focus:text-[#8B4513] text-center font-playfair"
                     style={{ 
                       background: 'white',
                       boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06), 0 0 0 1px rgba(0, 0, 0, 0.05)'
