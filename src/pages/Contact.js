@@ -4,10 +4,10 @@ const Contact = () => {
   return (
     <>
       <section className="relative z-0 overflow-hidden bg-[#FDF5E6] pt-32 pb-20 dark:bg-dark lg:pt-40 lg:pb-[120px]">
-        <div className="container mx-auto px-8 sm:px-12 lg:px-16">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-wrap justify-center lg:justify-between">
-            <div className="w-full px-4 lg:w-1/2 xl:w-6/12">
-              <div className="mb-12 max-w-[570px] mx-auto lg:mx-0 lg:mb-0">
+            <div className="w-full px-2 lg:w-1/2 xl:w-6/12">
+              <div className="mb-8 max-w-[570px] mx-auto lg:mx-0 lg:mb-0">
                 <span 
                   className="mb-4 block font-semibold text-primary"
                   style={{ 
@@ -26,12 +26,12 @@ const Contact = () => {
                 >
                   GET IN TOUCH WITH US
                 </h2>
-                <p className="mb-12 text-base leading-relaxed text-body-color dark:text-dark-6">
+                <p className="mb-8 text-base leading-relaxed text-body-color dark:text-dark-6">
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
                   do eius tempor incididunt ut labore e dolore magna aliqua. Ut
                   enim adiqua minim veniam quis nostrud exercitation ullamco
                 </p>
-                <div className="space-y-8">
+                <div className="space-y-6">
                   <div className="flex items-start">
                     <div className="mr-6 flex h-[60px] w-[60px] shrink-0 items-center justify-center overflow-hidden rounded bg-primary/5 text-primary sm:h-[70px] sm:w-[70px]">
                       <svg
@@ -124,8 +124,8 @@ const Contact = () => {
                 </div>
               </div>
             </div>
-            <div className="w-full px-4 lg:w-1/2 xl:w-5/12">
-              <div className="relative rounded-lg bg-white p-8 shadow-2xl dark:bg-dark-2 sm:p-12 mx-auto lg:mx-0 max-w-[570px]">
+            <div className="w-full px-2 lg:w-1/2 xl:w-5/12 mt-8 lg:mt-0">
+              <div className="relative rounded-lg bg-white p-4 sm:p-6 lg:p-8 shadow-2xl dark:bg-dark-2 mx-auto lg:mx-0 max-w-[570px]">
                 <div className="absolute inset-0 z-[-1]">
                   <span className="absolute -right-9 -top-10">
                     <svg
@@ -934,7 +934,7 @@ const Contact = () => {
                     </svg>
                   </span>
                 </div>
-                <form className="relative z-10 bg-white rounded-lg p-8 shadow-lg">
+                <form className="relative z-10 bg-white rounded-lg">
                   <ContactInputBox
                     type="text"
                     name="name"
@@ -956,17 +956,17 @@ const Contact = () => {
                     name="details"
                     defaultValue=""
                   />
-                  <div className="mt-6">
+                  <div className="mt-4">
                     <button
-                        type="submit"
+                      type="submit"
                       style={{ 
                         backgroundColor: '#8B4513',
                         borderColor: '#8B4513',
                         color: 'white'
                       }}
-                      className="w-full rounded-md border-2 px-8 py-3 text-base font-medium transition duration-300 ease-in-out hover:bg-[#A0522D] hover:shadow-lg"
-                      >
-                        Send Message
+                      className="w-full rounded-md border-2 px-6 py-3 text-base font-medium transition duration-300 ease-in-out hover:bg-[#A0522D] hover:shadow-lg"
+                    >
+                      Send Message
                     </button>
                   </div>
                 </form>
@@ -984,12 +984,12 @@ export default Contact;
 const ContactTextArea = ({ row, placeholder, name, defaultValue }) => {
   return (
     <>
-      <div className="mb-6">
+      <div className="mb-4">
         <textarea
           rows={row}
           placeholder={placeholder}
           name={name}
-          className="w-full resize-none rounded-lg border border-[#DEB887] bg-[#FDF5E6] pl-6 pr-4 py-3 text-base text-[#6D4C41] outline-none focus:border-[#8B4513] shadow-lg transition-all duration-300 dark:border-dark-3 dark:bg-dark dark:text-dark-6"
+          className="w-full resize-none rounded-lg border border-[#DEB887] bg-[#FDF5E6] px-4 py-3 text-base text-[#6D4C41] outline-none focus:border-[#8B4513] shadow-lg transition-all duration-300 dark:border-dark-3 dark:bg-dark dark:text-dark-6"
           defaultValue={defaultValue}
         />
       </div>
@@ -1000,12 +1000,12 @@ const ContactTextArea = ({ row, placeholder, name, defaultValue }) => {
 const ContactInputBox = ({ type, placeholder, name }) => {
   return (
     <>
-      <div className="mb-6">
+      <div className="mb-4">
         <input
           type={type}
           placeholder={placeholder}
           name={name}
-          className="w-full rounded-lg border border-[#DEB887] bg-[#FDF5E6] pl-6 pr-4 py-3 text-base text-[#6D4C41] outline-none focus:border-[#8B4513] shadow-lg transition-all duration-300 dark:border-dark-3 dark:bg-dark dark:text-dark-6"
+          className="w-full rounded-lg border border-[#DEB887] bg-[#FDF5E6] px-4 py-3 text-base text-[#6D4C41] outline-none focus:border-[#8B4513] shadow-lg transition-all duration-300 dark:border-dark-3 dark:bg-dark dark:text-dark-6"
         />
       </div>
     </>
