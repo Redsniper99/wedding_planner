@@ -1,0 +1,27 @@
+[
+  {
+    "id": "Garden_Ceremony",
+    "title": "Garden Ceremony",
+    "date": "2025-11-21T15:14:19.697Z",
+    "cover": "/images/recent_works/Garden_Ceremony/img1.jpg",
+    "images": [
+      "/images/recent_works/Garden_Ceremony/img1.jpg"
+    ],
+    "category": "Recent Work",
+    "description": "Beautiful moments from Garden Ceremony",
+    "isNew": true
+  },
+  {
+    "id": "Beach_Wedding",
+    "title": "Beach Wedding",
+    "date": "2025-11-21T15:14:19.606Z",
+    "cover": "/images/recent_works/Beach_Wedding/img1.jpg",
+    "images": [
+      "/images/recent_works/Beach_Wedding/img1.jpg",
+      "/images/recent_works/Beach_Wedding/img2.jpg"
+    ],
+    "category": "Recent Work",
+    "description": "Beautiful moments from Beach Wedding",
+    "isNew": true
+  }
+]

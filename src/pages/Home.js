@@ -1,10 +1,25 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Container, Typography, Grid, Card, CardContent } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 
 const Home = () => {
   const navigate = useNavigate();
+  const [recentAlbums, setRecentAlbums] = useState([]);
+
+  // Load recent albums
+  useEffect(() => {
+    fetch('/gallery-data.json')
+      .then(res => res.json())
+      .then(data => {
+        // Get the 6 most recent albums
+        setRecentAlbums(data.slice(0, 6));
+      })
+      .catch(err => {
+        console.error('Error loading gallery data:', err);
+        setRecentAlbums([]);
+      });
+  }, []);
 
   const testimonials = [
     {
@@ -332,102 +347,57 @@ const Home = () => {
 
         {/* Masonry Grid Gallery */}
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-8">
-          {[
-            {
-              type: 'image',
-              url: 'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=2070&auto=format&fit=crop',
-              title: 'Elegant Ceremony',
-              span: 'md:col-span-2 md:row-span-2',
-            },
-            {
-              type: 'video',
-              url: 'https://images.unsplash.com/photo-1606800052052-a08af7148866?q=80&w=1470&auto=format&fit=crop',
-              thumbnail: 'https://images.unsplash.com/photo-1606800052052-a08af7148866?q=80&w=1470&auto=format&fit=crop',
-              title: 'Wedding Highlights',
-              span: '',
-            },
-            {
-              type: 'image',
-              url: 'https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=1469&auto=format&fit=crop',
-              title: 'Reception Details',
-              span: '',
-            },
-            {
-              type: 'image',
-              url: 'https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?q=80&w=1470&auto=format&fit=crop',
-              title: 'Floral Arrangements',
-              span: 'md:row-span-2',
-            },
-            {
-              type: 'image',
-              url: 'https://images.unsplash.com/photo-1522673607200-164d1b6ce486?q=80&w=1470&auto=format&fit=crop',
-              title: 'Couple Moments',
-              span: '',
-            },
-            {
-              type: 'video',
-              url: 'https://images.unsplash.com/photo-1519167758481-83f550bb49b3?q=80&w=2098&auto=format&fit=crop',
-              thumbnail: 'https://images.unsplash.com/photo-1519167758481-83f550bb49b3?q=80&w=2098&auto=format&fit=crop',
-              title: 'Venue Tour',
-              span: '',
-            },
-            {
-              type: 'image',
-              url: 'https://images.unsplash.com/photo-1583939003579-730e3918a45a?q=80&w=1374&auto=format&fit=crop',
-              title: 'Table Settings',
-              span: '',
-            },
-            {
-              type: 'image',
-              url: 'https://images.unsplash.com/photo-1507504031981-a2368c6e1916?q=80&w=1470&auto=format&fit=crop',
-              title: 'Decor Inspiration',
-              span: 'md:col-span-2',
-            },
-          ].map((item, idx) => (
-            <motion.div
-              key={idx}
-              className={`relative overflow-hidden rounded-2xl group cursor-pointer ${item.span} h-64 md:h-auto md:aspect-square ${item.span.includes('row-span-2') ? 'md:aspect-auto md:h-full' : ''}`}
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5, delay: idx * 0.05 }}
-              viewport={{ once: true }}
-              whileHover={{ scale: 1.02 }}
-            >
-              <img
-                src={item.type === 'video' ? item.thumbnail : item.url}
-                alt={item.title}
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                onError={(e) => {
-                  e.target.onerror = null;
-                  e.target.src = 'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=2070&auto=format&fit=crop';
-                }}
-              />
+          {recentAlbums.length === 0 ? (
+            // Fallback if no albums
+            <div className="col-span-full text-center py-12">
+              <Typography className="text-[#5D4037] font-playfair">
+                No albums yet. Add folders to <code className="bg-[#8B4513]/10 px-2 py-1 rounded text-sm">public/images/recent-work/</code>
+              </Typography>
+            </div>
+          ) : (
+            recentAlbums.map((album, idx) => (
+              <motion.div
+                key={album.id}
+                className={`relative overflow-hidden rounded-2xl group cursor-pointer h-64 md:h-auto md:aspect-square ${idx === 0 ? 'md:col-span-2 md:row-span-2 md:aspect-auto md:h-full' : ''
+                  }`}
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5, delay: idx * 0.05 }}
+                viewport={{ once: true }}
+                whileHover={{ scale: 1.02 }}
+                onClick={() => navigate('/gallery')}
+              >
+                <img
+                  src={album.coverThumbnail || album.coverImage}
+                  alt={album.name}
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  onError={(e) => {
+                    e.target.onerror = null;
+                    e.target.src = 'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=2070&auto=format&fit=crop';
+                  }}
+                />
 
-              {/* Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <div className="absolute bottom-0 left-0 right-0 p-4">
-                  <Typography className="text-white font-playfair font-semibold text-sm md:text-base">
-                    {item.title}
-                  </Typography>
-                </div>
-              </div>
+                {/* NEW Badge */}
+                {album.isNew && (
+                  <div className="absolute top-3 right-3 bg-[#8B4513] text-white px-3 py-1 rounded-full text-xs font-bold shadow-lg z-10">
+                    NEW
+                  </div>
+                )}
 
-              {/* Video Play Button */}
-              {item.type === 'video' && (
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <motion.div
-                    className="w-16 h-16 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center shadow-xl"
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    <svg className="w-8 h-8 text-[#8B4513] ml-1" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M8 5v14l11-7z" />
-                    </svg>
-                  </motion.div>
+                {/* Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <div className="absolute bottom-0 left-0 right-0 p-4">
+                    <Typography className="text-white font-playfair font-semibold text-sm md:text-base">
+                      {album.name}
+                    </Typography>
+                    <Typography className="text-white/80 text-xs mt-1">
+                      {album.imageCount} photos • {album.category}
+                    </Typography>
+                  </div>
                 </div>
-              )}
-            </motion.div>
-          ))}
+              </motion.div>
+            ))
+          )}
         </div>
 
         {/* View Full Gallery Button */}

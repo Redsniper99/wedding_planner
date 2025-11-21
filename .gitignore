@@ -21,3 +21,8 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# Gallery System
+# Ignore large original images to save repo space
+public/images/recent-work/
+# Keep optimized images (do not ignore public/images/optimized/)

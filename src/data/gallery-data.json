@@ -1,0 +1,42 @@
+[
+  {
+    "id": "emma-&-michael---reception",
+    "name": "Emma & Michael",
+    "folderName": "Emma & Michael - Reception",
+    "category": "Reception",
+    "coverImage": "/images/optimized/Emma & Michael - Reception/cover/reception-001.jpg",
+    "coverThumbnail": "/images/optimized/Emma & Michael - Reception/thumbnail/reception-001.jpg",
+    "images": [
+      "/images/optimized/Emma & Michael - Reception/medium/reception-001.jpg",
+      "/images/optimized/Emma & Michael - Reception/medium/reception-002.jpg"
+    ],
+    "thumbnails": [
+      "/images/optimized/Emma & Michael - Reception/thumbnail/reception-001.jpg",
+      "/images/optimized/Emma & Michael - Reception/thumbnail/reception-002.jpg"
+    ],
+    "imageCount": 2,
+    "createdAt": "2025-11-21T15:38:18.349Z",
+    "isNew": true
+  },
+  {
+    "id": "sarah-&-john-wedding---ceremony",
+    "name": "Sarah & John Wedding",
+    "folderName": "Sarah & John Wedding - Ceremony",
+    "category": "Ceremony",
+    "coverImage": "/images/optimized/Sarah & John Wedding - Ceremony/cover/ceremony-001.jpg",
+    "coverThumbnail": "/images/optimized/Sarah & John Wedding - Ceremony/thumbnail/ceremony-001.jpg",
+    "images": [
+      "/images/optimized/Sarah & John Wedding - Ceremony/medium/ceremony-001.jpg",
+      "/images/optimized/Sarah & John Wedding - Ceremony/medium/ceremony-002.jpg",
+      "/images/optimized/Sarah & John Wedding - Ceremony/medium/ceremony-003.jpg"
+    ],
+    "thumbnails": [
+      "/images/optimized/Sarah & John Wedding - Ceremony/thumbnail/ceremony-001.jpg",
+      "/images/optimized/Sarah & John Wedding - Ceremony/thumbnail/ceremony-002.jpg",
+      "/images/optimized/Sarah & John Wedding - Ceremony/thumbnail/ceremony-003.jpg"
+    ],
+    "imageCount": 3,
+    "createdAt": "2025-11-21T15:38:01.689Z",
+    "isNew": true
+  }
+]

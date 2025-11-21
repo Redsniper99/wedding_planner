@@ -1,110 +1,98 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Container, Typography } from '@mui/material';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const Gallery = () => {
-    const [selectedImage, setSelectedImage] = useState(null);
+    const [albums, setAlbums] = useState([]);
+    const [loading, setLoading] = useState(true);
     const [filter, setFilter] = useState('all');
+    const [selectedAlbum, setSelectedAlbum] = useState(null);
+    const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
-    const galleryItems = [
-        {
-            id: 1,
-            url: 'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=2070&auto=format&fit=crop',
-            category: 'ceremony',
-            title: 'Elegant Ceremony',
-            description: 'A beautiful outdoor ceremony setup'
-        },
-        {
-            id: 2,
-            url: 'https://images.unsplash.com/photo-1606800052052-a08af7148866?q=80&w=1470&auto=format&fit=crop',
-            category: 'reception',
-            title: 'Grand Reception',
-            description: 'Luxurious reception hall'
-        },
-        {
-            id: 3,
-            url: 'https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=1469&auto=format&fit=crop',
-            category: 'decor',
-            title: 'Reception Details',
-            description: 'Stunning table settings'
-        },
-        {
-            id: 4,
-            url: 'https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?q=80&w=1470&auto=format&fit=crop',
-            category: 'decor',
-            title: 'Floral Arrangements',
-            description: 'Beautiful floral centerpieces'
-        },
-        {
-            id: 5,
-            url: 'https://images.unsplash.com/photo-1522673607200-164d1b6ce486?q=80&w=1470&auto=format&fit=crop',
-            category: 'couple',
-            title: 'Couple Moments',
-            description: 'Intimate couple photography'
-        },
-        {
-            id: 6,
-            url: 'https://images.unsplash.com/photo-1519167758481-83f550bb49b3?q=80&w=2098&auto=format&fit=crop',
-            category: 'venue',
-            title: 'Venue Tour',
-            description: 'Aerial view of the venue'
-        },
-        {
-            id: 7,
-            url: 'https://images.unsplash.com/photo-1583939003579-730e3918a45a?q=80&w=1374&auto=format&fit=crop',
-            category: 'decor',
-            title: 'Table Settings',
-            description: 'Elegant place settings'
-        },
-        {
-            id: 8,
-            url: 'https://images.unsplash.com/photo-1507504031981-a2368c6e1916?q=80&w=1470&auto=format&fit=crop',
-            category: 'decor',
-            title: 'Decor Inspiration',
-            description: 'Floral decor details'
-        },
-        {
-            id: 9,
-            url: 'https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?q=80&w=1469&auto=format&fit=crop',
-            category: 'venue',
-            title: 'Wedding Venue',
-            description: 'Beautiful wedding venue'
-        },
-        {
-            id: 10,
-            url: 'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?q=80&w=1469&auto=format&fit=crop',
-            category: 'reception',
-            title: 'Reception Hall',
-            description: 'Luxury reception setup'
-        },
-        {
-            id: 11,
-            url: 'https://images.unsplash.com/photo-1519225468359-69632974a7d8?q=80&w=1470&auto=format&fit=crop',
-            category: 'ceremony',
-            title: 'Intimate Ceremony',
-            description: 'Cozy ceremony setting'
-        },
-        {
-            id: 12,
-            url: 'https://images.unsplash.com/photo-1478146896981-b80fe463b330?q=80&w=1470&auto=format&fit=crop',
-            category: 'couple',
-            title: 'Romantic Moments',
-            description: 'Couple photography'
-        },
-    ];
+    // Load gallery data
+    useEffect(() => {
+        setLoading(true);
+        fetch('/gallery-data.json')
+            .then(res => res.json())
+            .then(data => {
+                setAlbums(data);
+                setLoading(false);
+            })
+            .catch(err => {
+                console.error('Error loading gallery data:', err);
+                setAlbums([]);
+                setLoading(false);
+            });
+    }, []);
 
+    // Get unique categories
     const categories = [
         { id: 'all', label: 'All' },
-        { id: 'ceremony', label: 'Ceremony' },
-        { id: 'reception', label: 'Reception' },
-        { id: 'decor', label: 'Decor' },
-        { id: 'couple', label: 'Couple' },
-        { id: 'venue', label: 'Venue' },
+        ...Array.from(new Set(albums.map(album => album.category)))
+            .map(cat => ({ id: cat.toLowerCase(), label: cat }))
     ];
 
-    const filteredItems = filter === 'all'
-        ? galleryItems
-        : galleryItems.filter(item => item.category === filter);
+    // Filter albums
+    const filteredAlbums = filter === 'all'
+        ? albums
+        : albums.filter(album => album.category.toLowerCase() === filter);
+
+    // Album slider navigation
+    const nextImage = () => {
+        if (selectedAlbum) {
+            setCurrentImageIndex((prev) =>
+                prev === selectedAlbum.images.length - 1 ? 0 : prev + 1
+            );
+        }
+    };
+
+    const prevImage = () => {
+        if (selectedAlbum) {
+            setCurrentImageIndex((prev) =>
+                prev === 0 ? selectedAlbum.images.length - 1 : prev - 1
+            );
+        }
+    };
+
+    const openAlbum = (album) => {
+        setSelectedAlbum(album);
+        setCurrentImageIndex(0);
+    };
+
+    const closeAlbum = () => {
+        setSelectedAlbum(null);
+        setCurrentImageIndex(0);
+    };
+
+    // Keyboard navigation
+    useEffect(() => {
+        const handleKeyPress = (e) => {
+            if (!selectedAlbum) return;
+            if (e.key === 'ArrowLeft') prevImage();
+            if (e.key === 'ArrowRight') nextImage();
+            if (e.key === 'Escape') closeAlbum();
+        };
+
+        window.addEventListener('keydown', handleKeyPress);
+        return () => window.removeEventListener('keydown', handleKeyPress);
+    }, [selectedAlbum]);
+
+    // Hide Navbar and Block Scroll when album is open
+    useEffect(() => {
+        const navbar = document.querySelector('header'); // MUI AppBar renders as header
+        if (selectedAlbum) {
+            if (navbar) navbar.style.display = 'none';
+            document.body.style.overflow = 'hidden'; // Block scroll
+        } else {
+            if (navbar) navbar.style.display = '';
+            document.body.style.overflow = 'unset'; // Restore scroll
+        }
+
+        return () => {
+            if (navbar) navbar.style.display = '';
+            document.body.style.overflow = 'unset';
+        };
+    }, [selectedAlbum]);
 
     return (
         <div className="min-h-screen bg-gradient-to-b from-[#FDF5E6] to-white pt-32 pb-20">
@@ -149,99 +137,198 @@ const Gallery = () => {
                     ))}
                 </motion.div>
 
-                {/* Gallery Grid */}
-                <motion.div
-                    layout
-                    className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
-                >
-                    <AnimatePresence>
-                        {filteredItems.map((item, idx) => (
-                            <motion.div
-                                key={item.id}
-                                layout
-                                initial={{ opacity: 0, scale: 0.9 }}
-                                animate={{ opacity: 1, scale: 1 }}
-                                exit={{ opacity: 0, scale: 0.9 }}
-                                transition={{ duration: 0.4, delay: idx * 0.05 }}
-                                className="relative overflow-hidden rounded-2xl group cursor-pointer aspect-square"
-                                onClick={() => setSelectedImage(item)}
-                                whileHover={{ scale: 1.02 }}
-                            >
-                                <img
-                                    src={item.url}
-                                    alt={item.title}
-                                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                                    onError={(e) => {
-                                        e.target.onerror = null;
-                                        e.target.src = 'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=2070&auto=format&fit=crop';
-                                    }}
-                                />
-
-                                {/* Overlay */}
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                    <div className="absolute bottom-0 left-0 right-0 p-6">
-                                        <Typography className="text-white font-playfair font-bold text-xl mb-1">
-                                            {item.title}
-                                        </Typography>
-                                        <Typography className="text-white/90 text-sm">
-                                            {item.description}
-                                        </Typography>
-                                    </div>
-                                </div>
-                            </motion.div>
-                        ))}
-                    </AnimatePresence>
-                </motion.div>
-            </Container>
-
-            {/* Lightbox Modal */}
-            <AnimatePresence>
-                {selectedImage && (
+                {/* Loading State */}
+                {loading ? (
                     <motion.div
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        className="fixed inset-0 bg-black/95 z-50 flex items-center justify-center p-4"
-                        onClick={() => setSelectedImage(null)}
+                        className="flex flex-col items-center justify-center py-20"
                     >
+                        <div className="w-16 h-16 border-4 border-[#8B4513]/20 border-t-[#8B4513] rounded-full animate-spin mb-4"></div>
+                        <Typography className="text-[#5D4037] font-playfair">Loading albums...</Typography>
+                    </motion.div>
+                ) : filteredAlbums.length === 0 ? (
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        className="text-center py-20"
+                    >
+                        <Typography className="text-[#5D4037] text-lg font-playfair">
+                            No albums found. Add folders to <code className="bg-[#8B4513]/10 px-2 py-1 rounded">public/images/recent-work/</code>
+                        </Typography>
+                        <Typography className="text-[#5D4037] text-sm mt-4">
+                            Run <code className="bg-[#8B4513]/10 px-2 py-1 rounded">npm run gallery:generate</code> after adding images
+                        </Typography>
+                    </motion.div>
+                ) : (
+                    <>
+
+
                         <motion.div
-                            initial={{ scale: 0.9, opacity: 0 }}
-                            animate={{ scale: 1, opacity: 1 }}
-                            exit={{ scale: 0.9, opacity: 0 }}
-                            transition={{ type: 'spring', damping: 25 }}
-                            className="relative max-w-5xl w-full"
-                            onClick={(e) => e.stopPropagation()}
+                            layout
+                            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
                         >
-                            {/* Close Button */}
+                            <AnimatePresence>
+                                {filteredAlbums.map((album, index) => (
+                                    <motion.div
+                                        key={album.id}
+                                        layout
+                                        initial={{ opacity: 0, scale: 0.9 }}
+                                        animate={{ opacity: 1, scale: 1 }}
+                                        exit={{ opacity: 0, scale: 0.9 }}
+                                        transition={{ duration: 0.3, delay: index * 0.05 }}
+                                        className="relative overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer bg-white border border-gray-200"
+                                        onClick={() => openAlbum(album)}
+                                    >
+                                        {/* Album Info - Always Visible */}
+                                        <div className="p-5 border-b border-gray-100">
+                                            <div className="flex justify-between items-start">
+                                                <h3 className="text-xl font-bold text-[#3E2723] mb-1 font-playfair">{album.name}</h3>
+                                                {album.isNew && (
+                                                    <span className="bg-[#8B4513] text-white px-2 py-1 rounded text-xs font-bold">
+                                                        NEW
+                                                    </span>
+                                                )}
+                                            </div>
+                                            <p className="text-sm text-[#5D4037]">{album.imageCount} photos • {album.category}</p>
+                                        </div>
+
+                                        {/* Album Cover Image */}
+                                        <div className="relative h-64 bg-gray-100 group">
+                                            <img
+                                                src={album.coverThumbnail || album.coverImage}
+                                                alt={album.name}
+                                                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                                                loading="lazy"
+                                                onError={(e) => {
+                                                    e.target.style.display = 'none';
+                                                    e.target.parentElement.innerHTML = '<div class="flex items-center justify-center h-full text-gray-400"><span class="text-sm">Image unavailable</span></div>';
+                                                }}
+                                            />
+
+                                            {/* Hover Overlay */}
+                                            <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                                        </div>
+                                    </motion.div>
+                                ))}
+                            </AnimatePresence>
+                        </motion.div>
+                    </>
+                )}
+
+                {/* Album Slider Modal */}
+                <AnimatePresence>
+                    {selectedAlbum && (
+                        <motion.div
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            className="fixed inset-0 z-[9999] bg-black/80"
+                            style={{ backdropFilter: 'blur(20px)', WebkitBackdropFilter: 'blur(20px)' }}
+                            onClick={closeAlbum}
+                        >
+                            {/* Close Button - Top Right */}
                             <button
-                                onClick={() => setSelectedImage(null)}
-                                className="absolute -top-12 right-0 text-white hover:text-[#DEB887] transition-colors"
+                                className="absolute top-6 right-6 text-white z-[10000] bg-black p-3 rounded-full hover:bg-gray-800 hover:scale-110 transition-all shadow-lg border border-white/20"
+                                onClick={closeAlbum}
                             >
                                 <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M6 18L18 6M6 6l12 12" />
                                 </svg>
                             </button>
 
-                            {/* Image */}
-                            <img
-                                src={selectedImage.url}
-                                alt={selectedImage.title}
-                                className="w-full h-auto rounded-2xl shadow-2xl"
-                            />
-
-                            {/* Image Info */}
-                            <div className="mt-6 text-center">
-                                <Typography className="text-white font-playfair font-bold text-2xl mb-2">
-                                    {selectedImage.title}
-                                </Typography>
-                                <Typography className="text-white/80 text-base">
-                                    {selectedImage.description}
-                                </Typography>
+                            {/* Album Info - Top Left */}
+                            <div className="absolute top-6 left-6 text-white z-50 bg-black/50 backdrop-blur-sm px-6 py-3 rounded-full">
+                                <h2 className="font-playfair font-bold text-lg">{selectedAlbum.name}</h2>
+                                <p className="text-sm opacity-90">
+                                    {currentImageIndex + 1} / {selectedAlbum.images.length}
+                                </p>
                             </div>
+
+                            {/* Main Content Area */}
+                            <div className="absolute inset-0 flex items-center justify-center pt-20 pb-32">
+                                {/* Image Container */}
+                                <div
+                                    className="relative w-full h-full flex items-center justify-center px-2 md:px-20"
+                                    onClick={(e) => e.stopPropagation()}
+                                >
+                                    <motion.img
+                                        key={currentImageIndex}
+                                        src={selectedAlbum.images[currentImageIndex]}
+                                        alt={`${selectedAlbum.name} - ${currentImageIndex + 1}`}
+                                        className="max-w-full max-h-full object-contain rounded-lg shadow-2xl cursor-grab active:cursor-grabbing"
+                                        initial={{ opacity: 0, scale: 0.95 }}
+                                        animate={{ opacity: 1, scale: 1, x: 0 }}
+                                        exit={{ opacity: 0 }}
+                                        transition={{ duration: 0.3 }}
+                                        drag="x"
+                                        dragConstraints={{ left: 0, right: 0 }}
+                                        dragElastic={1}
+                                        onDragEnd={(e, { offset, velocity }) => {
+                                            const swipe = offset.x;
+                                            if (swipe < -50) {
+                                                nextImage();
+                                            } else if (swipe > 50) {
+                                                prevImage();
+                                            }
+                                        }}
+                                        onError={(e) => {
+                                            console.error('Image failed to load:', e.target.src);
+                                            e.target.src = 'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1200';
+                                        }}
+                                    />
+
+                                    {/* Navigation Buttons - Hidden on Mobile */}
+                                    {selectedAlbum.images.length > 1 && (
+                                        <>
+                                            <button
+                                                onClick={(e) => { e.stopPropagation(); prevImage(); }}
+                                                className="hidden md:block absolute left-4 md:left-8 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white backdrop-blur-md border border-gray-200 text-black p-4 rounded-full transition-all hover:scale-110 group shadow-lg z-50"
+                                                aria-label="Previous image"
+                                            >
+                                                <svg className="w-8 h-8 group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M15 19l-7-7 7-7" />
+                                                </svg>
+                                            </button>
+                                            <button
+                                                onClick={(e) => { e.stopPropagation(); nextImage(); }}
+                                                className="hidden md:block absolute right-4 md:right-8 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white backdrop-blur-md border border-gray-200 text-black p-4 rounded-full transition-all hover:scale-110 group shadow-lg z-50"
+                                                aria-label="Next image"
+                                            >
+                                                <svg className="w-8 h-8 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M9 5l7 7-7 7" />
+                                                </svg>
+                                            </button>
+                                        </>
+                                    )}
+                                </div>
+                            </div>
+
+                            {/* Thumbnail Strip */}
+                            {selectedAlbum.images.length > 1 && (
+                                <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 overflow-x-auto max-w-full px-4 py-2 bg-black/50 backdrop-blur-sm rounded-full">
+                                    {selectedAlbum.images.map((img, idx) => (
+                                        <button
+                                            key={idx}
+                                            onClick={(e) => { e.stopPropagation(); setCurrentImageIndex(idx); }}
+                                            className={`flex-shrink-0 w-16 h-16 rounded-lg overflow-hidden border-2 transition-all ${idx === currentImageIndex
+                                                ? 'border-[#DEB887] scale-110'
+                                                : 'border-white/30 hover:border-white/60'
+                                                }`}
+                                        >
+                                            <img
+                                                src={selectedAlbum.thumbnails ? selectedAlbum.thumbnails[idx] : img}
+                                                alt={`Thumbnail ${idx + 1}`}
+                                                className="w-full h-full object-cover"
+                                            />
+                                        </button>
+                                    ))}
+                                </div>
+                            )}
                         </motion.div>
-                    </motion.div>
-                )}
-            </AnimatePresence>
+                    )}
+                </AnimatePresence>
+            </Container>
         </div>
     );
 };
