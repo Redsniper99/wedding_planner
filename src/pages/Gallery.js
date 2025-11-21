@@ -163,11 +163,11 @@ const Gallery = () => {
                         animate={{ opacity: 1 }}
                         className="text-center py-20"
                     >
-                        <Typography variant="h5" className="font-playfair text-[#5D4037] mb-4">
-                            No albums found
+                        <Typography className="text-[#5D4037] text-lg font-playfair">
+                            No albums found. Add folders to <code className="bg-[#8B4513]/10 px-2 py-1 rounded">public/images/recent-work/</code>
                         </Typography>
-                        <Typography className="text-[#8B4513]">
-                            Try adjusting your search or category filter
+                        <Typography className="text-[#5D4037] text-sm mt-4">
+                            Run <code className="bg-[#8B4513]/10 px-2 py-1 rounded">npm run gallery:generate</code> after adding images
                         </Typography>
                     </motion.div>
                 ) : (

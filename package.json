@@ -1,7 +1,6 @@
 {
   "name": "wedding-planner",
   "version": "0.1.0",
-  "homepage": "https://redsniper99.github.io/wedding_planner",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.14.0",
