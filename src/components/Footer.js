@@ -43,7 +43,18 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="bg-gray-900 text-white">
+    <footer
+      className="text-white"
+      style={{
+        backgroundColor: 'rgba(0, 0, 0, 0.7)', // More transparent to show "glass" effect
+        backdropFilter: 'blur(20px)',
+        WebkitBackdropFilter: 'blur(20px)',
+        borderTop: '1px solid rgba(255, 255, 255, 0.1)', // Glass edge
+        boxShadow: '0 -4px 30px rgba(0, 0, 0, 0.3)', // Depth
+        position: 'relative',
+        zIndex: 10
+      }}
+    >
       <Container className="py-12">
         <Grid container spacing={8}>
           {/* Company Info */}
