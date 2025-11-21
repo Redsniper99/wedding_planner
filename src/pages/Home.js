@@ -465,13 +465,13 @@ const Home = () => {
             {
               title: 'Floral & Decor',
               desc: 'Transforming spaces with stunning floral arrangements and bespoke styling.',
-              image: 'https://images.unsplash.com/photo-1507504031981-a2368c6e1916?q=80&w=1470&auto=format&fit=crop',
+              image: 'https://images.unsplash.com/photo-1606800052052-a08af7148866?q=80&w=1470&auto=format&fit=crop',
               colSpan: 'lg:col-span-1',
             },
             {
               title: 'Entertainment',
               desc: 'Curating the perfect atmosphere with world-class musicians and performers.',
-              image: 'https://images.unsplash.com/photo-1516280440614-6697288d5d38?q=80&w=1470&auto=format&fit=crop', // Updated to a more reliable concert/band image
+              image: 'https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?q=80&w=1470&auto=format&fit=crop',
               colSpan: 'lg:col-span-3',
             },
           ].map((service, idx) => (
