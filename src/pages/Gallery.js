@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { Container, Typography } from '@mui/material';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -226,20 +227,20 @@ const Gallery = () => {
                     </>
                 )}
 
-                {/* Album Slider Modal */}
-                <AnimatePresence>
-                    {selectedAlbum && (
+                {/* Album Slider Modal - Rendered via Portal to ensure it's on top of everything */}
+                {selectedAlbum && createPortal(
+                    <AnimatePresence mode="wait">
                         <motion.div
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             exit={{ opacity: 0 }}
-                            className="fixed inset-0 z-[9999] bg-black/80"
+                            className="fixed inset-0 z-[99999] bg-black/90"
                             style={{ backdropFilter: 'blur(20px)', WebkitBackdropFilter: 'blur(20px)' }}
                             onClick={closeAlbum}
                         >
                             {/* Close Button - Top Right */}
                             <button
-                                className="absolute top-4 right-4 md:top-6 md:right-6 z-[10000] p-2 md:p-3 rounded-full shadow-lg transition-all hover:scale-110 bg-white text-black md:bg-black md:text-white md:border md:border-white/20"
+                                className="absolute top-4 right-4 md:top-6 md:right-6 z-[100000] p-2 md:p-3 rounded-full shadow-lg transition-all hover:scale-110 bg-white text-black md:bg-black md:text-white md:border md:border-white/20"
                                 onClick={closeAlbum}
                             >
                                 <svg className="w-6 h-6 md:w-8 md:h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -336,8 +337,9 @@ const Gallery = () => {
                                 </div>
                             )}
                         </motion.div>
-                    )}
-                </AnimatePresence>
+                    </AnimatePresence>,
+                    document.body
+                )}
             </Container>
         </div>
     );
