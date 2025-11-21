@@ -14,12 +14,31 @@ function App() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Simulate loading time (you can remove this in production)
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 5000);
+    const preloadImages = async () => {
+      const imageUrls = [
+        '/images/bg01.jpg',
+        '/images/bg2.jpg',
+        // Add other critical large images here if needed
+      ];
 
-    return () => clearTimeout(timer);
+      const cacheImages = async (src) => {
+        return new Promise((resolve, reject) => {
+          const img = new Image();
+          img.src = src;
+          img.onload = resolve;
+          img.onerror = resolve; // Resolve even on error to avoid blocking
+        });
+      };
+
+      // Wait for minimum animation time (2.5s) and image loading
+      const minTimePromise = new Promise(resolve => setTimeout(resolve, 2500));
+      const imagePromises = Promise.all(imageUrls.map(src => cacheImages(src)));
+
+      await Promise.all([minTimePromise, imagePromises]);
+      setLoading(false);
+    };
+
+    preloadImages();
   }, []);
 
   return (

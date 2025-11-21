@@ -1,16 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const Preloader = () => {
-  const [visible, setVisible] = useState(true);
-
-  useEffect(() => {
-    const timer = setTimeout(() => setVisible(false), 5000);
-    return () => clearTimeout(timer);
-  }, []);
-
-  if (!visible) return null;
-
   // Animation variants for each letter
   const letterVariants = {
     hidden: { opacity: 0, scale: 0.8, y: 20 },
