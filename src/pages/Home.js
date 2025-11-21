@@ -1,14 +1,10 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Container, Typography, Grid, Card, CardContent } from '@mui/material';
-import EventAvailableIcon from '@mui/icons-material/EventAvailable';
-import LocationOnIcon from '@mui/icons-material/LocationOn';
-import RestaurantIcon from '@mui/icons-material/Restaurant';
-import PhotoCameraIcon from '@mui/icons-material/PhotoCamera';
-import MusicNoteIcon from '@mui/icons-material/MusicNote';
-import LocalFloristIcon from '@mui/icons-material/LocalFlorist';
+import { useNavigate } from 'react-router-dom';
 
 const Home = () => {
+  const navigate = useNavigate();
 
   const testimonials = [
     {
@@ -30,287 +26,624 @@ const Home = () => {
 
   return (
     <div className="min-h-screen bg-[#FDF5E6]">
-      {/* Hero Section */}
+      {/* Hero Section - Modern & Immersive (Dark Overlay for White Text) */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ duration: 2 }}
-        className="relative w-full bg-cover bg-center h-screen flex items-center justify-center pt-20"
-        style={{
-          backgroundImage: 'none',
-        }}
+        transition={{ duration: 1.5 }}
+        className="relative w-full h-screen flex items-center justify-center overflow-hidden"
       >
-        {/* Video background */}
-        <div className="absolute inset-0 z-0 overflow-hidden">
-          <video
-            autoPlay
-            muted
-            loop
-            playsInline
-            className="absolute min-w-full min-h-full object-cover"
+        {/* Parallax Image Background */}
+        <motion.div
+          className="absolute inset-0 z-0"
+          initial={{ scale: 1.1 }}
+          animate={{ scale: 1 }}
+          transition={{ duration: 2, ease: "easeOut" }}
+        >
+          {/* Mobile Background Image - Shows only on screens smaller than md (768px) */}
+          <img
+            src="/images/bg2.jpg"
+            alt="Wedding Background Mobile"
+            className="md:hidden absolute min-w-full min-h-full object-cover"
             style={{
               width: '100%',
               height: '100%',
               objectFit: 'cover',
             }}
-          >
-            <source src="/video/bg.mp4" type="video/mp4" />
-          </video>
-        </div>
-        <div className="absolute inset-0 bg-[#8B4513] bg-opacity-60 backdrop-blur-md" />
-        <div className="relative flex flex-col items-center z-10 w-full -mt-20">
-          <div className="relative text-center text-white z-10">
-            {/* Mobile Title */}
-            <Typography
-              variant="h2"
-              className="font-bold mb-2 font-playfair md:hidden"
-              style={{
-                fontSize: '5.5rem',
-                lineHeight: '1.2'
-              }}
-            >
-              <span className="block">Dream</span>
-              <span className="block">Wedding</span>
-              <span className="block">Awaits</span>
-            </Typography>
-            {/* Desktop Title */}
-            <Typography
-              variant="h1"
-              className="font-bold mb-4 font-playfair text-base sm:text-2xl md:text-5xl lg:text-7xl hidden md:block"
-            >
-              Your Dream Wedding Awaits
-            </Typography>
-            <Typography
-              variant="h5"
-              className="mb-8 font-playfair text-[8px] xs:text-[8px] sm:text-sm md:text-2xl"
-            >
-              Let us make your special day unforgettable
-            </Typography>
+            onError={(e) => {
+              e.target.onerror = null;
+              e.target.src = 'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=2070&auto=format&fit=crop';
+            }}
+          />
 
-            <motion.button
-              onClick={() => window.open('https://wa.me/your-number-here', '_blank')}
-              style={{
-                backgroundImage: 'url(/images/wood.jpg)',
-                backgroundSize: 'cover',
-                backgroundPosition: 'center',
-                color: '#FFFFFF',
-                border: '2px solid rgba(139, 69, 19, 0.5)',
-                padding: '0.5rem 1rem',
-                borderRadius: '0.5rem',
-                boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.2)',
-                cursor: 'pointer',
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '0.5rem',
-                marginTop: '1.5rem',
-                marginBottom: '1rem',
-                fontWeight: 500,
-                fontSize: '0.875rem',
-                position: 'relative',
-                overflow: 'hidden',
-                textShadow: '0 1px 2px rgba(0, 0, 0, 0.3)',
-                whiteSpace: 'nowrap',
-                width: 'auto',
-                minWidth: 'fit-content',
-              }}
-              whileHover={{ 
-                scale: 1.05,
-                boxShadow: '0 6px 12px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.2)',
-                transition: {
-                  scale: '0.3s ease',
-                  boxShadow: '0.3s ease'
-                }
-              }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <div style={{
-                position: 'absolute',
-                top: 0,
-                left: 0,
-                right: 0,
-                bottom: 0,
-                backgroundColor: 'rgba(139, 69, 19, 0.4)',
-                backdropFilter: 'blur(0.5px)',
-              }} />
-              <span style={{ position: 'relative', zIndex: 1, display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                <svg
-                  className="w-5 h-5"
-                  fill="currentColor"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
+          {/* Desktop Background Image - Shows only on md (768px) and larger screens */}
+          <img
+            src="/images/bg01.jpg"
+            alt="Wedding Background Desktop"
+            className="hidden md:block absolute min-w-full min-h-full object-cover"
+            style={{
+              width: '100%',
+              height: '100%',
+              objectFit: 'cover',
+            }}
+            onError={(e) => {
+              e.target.onerror = null;
+              e.target.src = 'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=2070&auto=format&fit=crop';
+            }}
+          />
+
+          {/* Dark Gradient Overlay for White Text Readability */}
+          <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/40 to-black/60" />
+          <div className="absolute inset-0 bg-black/20 backdrop-blur-[1px]" />
+        </motion.div>
+
+        {/* Floating Decorative Elements */}
+        <motion.div
+          className="absolute top-20 left-10 w-20 h-20 rounded-full bg-white/10 backdrop-blur-sm"
+          animate={{
+            y: [0, -20, 0],
+            opacity: [0.3, 0.6, 0.3],
+          }}
+          transition={{
+            duration: 4,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+        />
+        <motion.div
+          className="absolute bottom-32 right-16 w-32 h-32 rounded-full bg-white/10 backdrop-blur-sm"
+          animate={{
+            y: [0, 20, 0],
+            opacity: [0.2, 0.5, 0.2],
+          }}
+          transition={{
+            duration: 5,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 1
+          }}
+        />
+
+        {/* Main Content Container */}
+        <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center">
+            {/* MOBILE VERSION - Shows only on screens smaller than md (768px) */}
+            <div className="md:hidden">
+              {/* Mobile Heading */}
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.3 }}
+                className="mb-4"
+              >
+                <h1 className="font-playfair font-bold text-white leading-tight">
+                  <span className="block text-3xl mb-2">
+                    Make Your
+                  </span>
+                  <span className="block text-4xl mb-2">
+                    Dream Wedding
+                  </span>
+                  <span className="block text-3xl text-white/95">
+                    A Reality
+                  </span>
+                </h1>
+              </motion.div>
+
+              {/* Mobile Description */}
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.5 }}
+                className="text-white text-sm leading-relaxed max-w-md mx-auto mb-8 font-light"
+              >
+                Expert planning & flawless execution for your perfect day
+              </motion.p>
+
+              {/* Mobile CTA */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.7 }}
+                className="flex flex-col gap-3"
+              >
+                <motion.button
+                  onClick={() => window.open('https://wa.me/your-number-here', '_blank')}
+                  className="w-full px-6 py-3 bg-[#DEB887] rounded-full text-white font-semibold text-sm shadow-xl"
+                  whileTap={{ scale: 0.98 }}
                 >
-                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-                </svg>
-                Let's Plan Your Dream Wedding
-              </span>
-            </motion.button>
+                  <span className="flex items-center justify-center gap-2">
+                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+                    </svg>
+                    Start Planning
+                  </span>
+                </motion.button>
+                <motion.button
+                  onClick={() => document.getElementById('services-section')?.scrollIntoView({ behavior: 'smooth' })}
+                  className="w-full px-6 py-3 bg-white/10 backdrop-blur-md rounded-full text-white font-semibold text-sm border-2 border-white/30"
+                  whileTap={{ scale: 0.98 }}
+                >
+                  Our Services
+                </motion.button>
+              </motion.div>
+
+              {/* Mobile Trust Indicators - Compact */}
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.8, delay: 0.9 }}
+                className="mt-8 flex justify-center items-center gap-6 text-white text-xs"
+              >
+                <div className="flex items-center gap-1">
+                  <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                  </svg>
+                  <span>500+ Couples</span>
+                </div>
+                <div className="flex items-center gap-1">
+                  <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clipRule="evenodd" />
+                  </svg>
+                  <span>10+ Years</span>
+                </div>
+              </motion.div>
+            </div>
+
+            {/* DESKTOP VERSION - Shows only on md (768px) and larger screens */}
+            <div className="hidden md:block">
+              {/* Main Heading - Staggered Animation */}
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.5 }}
+                className="mb-6"
+              >
+                <h1 className="font-playfair font-bold text-white leading-tight">
+                  <span className="block text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl mb-2">
+                    Your Dream Wedding
+                  </span>
+                  <span className="block text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-white">
+                    Begins Here
+                  </span>
+                </h1>
+              </motion.div>
+
+              {/* Description */}
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.7 }}
+                className="text-white text-base sm:text-lg md:text-xl lg:text-2xl max-w-3xl mx-auto mb-10 font-light leading-relaxed"
+              >
+                Creating unforgettable moments with elegance, precision, and a touch of magic
+              </motion.p>
+
+              {/* CTA Buttons */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.9 }}
+                className="flex flex-col sm:flex-row gap-4 justify-center items-center"
+              >
+                {/* Primary CTA */}
+                <motion.button
+                  onClick={() => window.open('https://wa.me/your-number-here', '_blank')}
+                  className="group relative px-8 py-4 bg-[#8B4513] rounded-full text-white font-semibold text-base md:text-lg overflow-hidden shadow-xl"
+                  whileHover={{ scale: 1.05, boxShadow: "0 20px 40px rgba(139, 69, 19, 0.4)" }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  <span className="relative z-10 flex items-center gap-3">
+                    <svg
+                      className="w-5 h-5 md:w-6 md:h-6"
+                      fill="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+                    </svg>
+                    Start Planning Today
+                  </span>
+                  <motion.div
+                    className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent"
+                    initial={{ x: '-100%' }}
+                    whileHover={{ x: '100%' }}
+                    transition={{ duration: 0.6 }}
+                  />
+                </motion.button>
+
+                {/* Secondary CTA */}
+                <motion.button
+                  onClick={() => document.getElementById('services-section')?.scrollIntoView({ behavior: 'smooth' })}
+                  className="px-8 py-4 bg-white/10 backdrop-blur-md rounded-full text-white font-semibold text-base md:text-lg border-2 border-white/30 hover:bg-[#8B4513]/20 hover:border-[#8B4513] transition-all duration-300"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  Explore Services
+                </motion.button>
+              </motion.div>
+
+              {/* Trust Indicators */}
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.8, delay: 1.1 }}
+                className="mt-12 flex flex-wrap justify-center items-center gap-8 text-white text-sm font-medium"
+              >
+                <div className="flex items-center gap-2">
+                  <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                  </svg>
+                  <span>500+ Happy Couples</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                  </svg>
+                  <span>Award Winning Team</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clipRule="evenodd" />
+                  </svg>
+                  <span>10+ Years Experience</span>
+                </div>
+              </motion.div>
+            </div>
           </div>
         </div>
+
+        {/* Scroll Indicator */}
+        <motion.div
+          className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20"
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 1.3 }}
+        >
+          <motion.div
+            animate={{ y: [0, 10, 0] }}
+            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+            className="flex flex-col items-center gap-2 cursor-pointer"
+            onClick={() => document.getElementById('services-section')?.scrollIntoView({ behavior: 'smooth' })}
+          >
+            <span className="text-white/80 text-sm font-medium">Scroll to explore</span>
+            <svg className="w-6 h-6 text-white/80" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+            </svg>
+          </motion.div>
+        </motion.div>
       </motion.div>
 
-      {/* Services Section */}
-      <Container className="py-10 sm:py-16 lg:py-20">
-        <div className="text-center">
-          <Typography 
-            variant="h2" 
-            className="font-bold leading-tight text-gray-900 font-playfair"
+      {/* Gallery Section - Recent Works & Videos */}
+      <Container className="py-16 sm:py-20 lg:py-24 bg-gradient-to-b from-[#FDF5E6] to-white">
+        <div className="text-center mb-12 flex flex-col items-center">
+          <Typography
+            variant="h2"
+            className="font-bold leading-tight text-[#3E2723] font-playfair mb-4"
             style={{ fontSize: '2.5rem' }}
           >
-            Make every step user-centric
+            Recent Works
           </Typography>
-          <Typography className="mt-4 text-base leading-7 text-gray-600 sm:mt-8 font-playfair">
-            Our comprehensive wedding services cover every detail for your perfect day.
+          <Typography className="text-lg text-[#5D4037] max-w-2xl mx-auto font-playfair text-center">
+            A glimpse into the beautiful moments we've helped create
           </Typography>
         </div>
-        <div className="grid grid-cols-1 mt-10 text-center sm:mt-16 sm:grid-cols-2 md:grid-cols-3 gap-x-6 gap-y-8 md:gap-x-8 md:gap-y-12 xl:mt-24">
+
+        {/* Masonry Grid Gallery */}
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-8">
           {[
             {
-              title: 'Wedding Planning',
-              desc: 'Full-service planning and coordination to make your special day seamless and stress-free.',
-              icon: <EventAvailableIcon sx={{ fontSize: { xs: 40, sm: 48, md: 56 }, color: '#8B4513' }} className="mx-auto mb-2" />,
+              type: 'image',
+              url: 'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=2070&auto=format&fit=crop',
+              title: 'Elegant Ceremony',
+              span: 'md:col-span-2 md:row-span-2',
+            },
+            {
+              type: 'video',
+              url: 'https://images.unsplash.com/photo-1606800052052-a08af7148866?q=80&w=1470&auto=format&fit=crop',
+              thumbnail: 'https://images.unsplash.com/photo-1606800052052-a08af7148866?q=80&w=1470&auto=format&fit=crop',
+              title: 'Wedding Highlights',
+              span: '',
+            },
+            {
+              type: 'image',
+              url: 'https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=1469&auto=format&fit=crop',
+              title: 'Reception Details',
+              span: '',
+            },
+            {
+              type: 'image',
+              url: 'https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?q=80&w=1470&auto=format&fit=crop',
+              title: 'Floral Arrangements',
+              span: 'md:row-span-2',
+            },
+            {
+              type: 'image',
+              url: 'https://images.unsplash.com/photo-1522673607200-164d1b6ce486?q=80&w=1470&auto=format&fit=crop',
+              title: 'Couple Moments',
+              span: '',
+            },
+            {
+              type: 'video',
+              url: 'https://images.unsplash.com/photo-1519167758481-83f550bb49b3?q=80&w=2098&auto=format&fit=crop',
+              thumbnail: 'https://images.unsplash.com/photo-1519167758481-83f550bb49b3?q=80&w=2098&auto=format&fit=crop',
+              title: 'Venue Tour',
+              span: '',
+            },
+            {
+              type: 'image',
+              url: 'https://images.unsplash.com/photo-1583939003579-730e3918a45a?q=80&w=1374&auto=format&fit=crop',
+              title: 'Table Settings',
+              span: '',
+            },
+            {
+              type: 'image',
+              url: 'https://images.unsplash.com/photo-1507504031981-a2368c6e1916?q=80&w=1470&auto=format&fit=crop',
+              title: 'Decor Inspiration',
+              span: 'md:col-span-2',
+            },
+          ].map((item, idx) => (
+            <motion.div
+              key={idx}
+              className={`relative overflow-hidden rounded-2xl group cursor-pointer ${item.span} h-64 md:h-auto md:aspect-square ${item.span.includes('row-span-2') ? 'md:aspect-auto md:h-full' : ''}`}
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5, delay: idx * 0.05 }}
+              viewport={{ once: true }}
+              whileHover={{ scale: 1.02 }}
+            >
+              <img
+                src={item.type === 'video' ? item.thumbnail : item.url}
+                alt={item.title}
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                onError={(e) => {
+                  e.target.onerror = null;
+                  e.target.src = 'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=2070&auto=format&fit=crop';
+                }}
+              />
+
+              {/* Overlay */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <div className="absolute bottom-0 left-0 right-0 p-4">
+                  <Typography className="text-white font-playfair font-semibold text-sm md:text-base">
+                    {item.title}
+                  </Typography>
+                </div>
+              </div>
+
+              {/* Video Play Button */}
+              {item.type === 'video' && (
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <motion.div
+                    className="w-16 h-16 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center shadow-xl"
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    <svg className="w-8 h-8 text-[#8B4513] ml-1" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M8 5v14l11-7z" />
+                    </svg>
+                  </motion.div>
+                </div>
+              )}
+            </motion.div>
+          ))}
+        </div>
+
+        {/* View Full Gallery Button */}
+        <div className="text-center">
+          <motion.button
+            className="px-8 py-3 bg-[#8B4513] text-black rounded-full font-semibold hover:bg-[#6D3710] transition-all duration-300 shadow-lg hover:shadow-xl"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.98 }}
+            onClick={() => navigate('/gallery')}
+          >
+            View Full Gallery
+          </motion.button>
+        </div>
+      </Container>
+
+      {/* Services Section - Modern Bento Grid */}
+      <Container id="services-section" className="py-20 sm:py-24 lg:py-32 relative z-10">
+        <div className="text-center mb-16 flex flex-col items-center">
+          <Typography
+            variant="h2"
+            className="font-bold leading-tight text-[#3E2723] font-playfair mb-4"
+            style={{ fontSize: '3rem' }}
+          >
+            Curated Wedding Services
+          </Typography>
+          <Typography className="text-lg text-[#5D4037] max-w-2xl mx-auto font-playfair text-center">
+            We craft every detail with precision and passion to create the wedding of your dreams.
+          </Typography>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+          {[
+            {
+              title: 'Full Planning',
+              desc: 'From concept to execution, we handle every detail so you can enjoy your journey.',
+              image: 'https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?q=80&w=1470&auto=format&fit=crop',
+              colSpan: 'lg:col-span-1',
             },
             {
               title: 'Venue Selection',
-              desc: 'Find and secure the perfect venue that matches your vision and guest list.',
-              icon: <LocationOnIcon sx={{ fontSize: { xs: 40, sm: 48, md: 56 }, color: '#8B4513' }} className="mx-auto mb-2" />,
+              desc: 'Access to exclusive, breathtaking venues that set the perfect stage for your love story.',
+              image: 'https://images.unsplash.com/photo-1519167758481-83f550bb49b3?q=80&w=2098&auto=format&fit=crop',
+              colSpan: 'lg:col-span-2',
             },
             {
-              title: 'Catering & Menu',
-              desc: 'Customizable menus and exquisite catering to delight every guest.',
-              icon: <RestaurantIcon sx={{ fontSize: { xs: 40, sm: 48, md: 56 }, color: '#8B4513' }} className="mx-auto mb-2" />,
+              title: 'Gourmet Catering',
+              desc: 'Exquisite culinary experiences tailored to your taste and dietary preferences.',
+              image: 'https://images.unsplash.com/photo-1555244162-803834f70033?q=80&w=1470&auto=format&fit=crop',
+              colSpan: 'lg:col-span-1',
             },
             {
-              title: 'Photography & Videography',
-              desc: 'Capture every magical moment with our professional photo and video team.',
-              icon: <PhotoCameraIcon sx={{ fontSize: { xs: 40, sm: 48, md: 56 }, color: '#8B4513' }} className="mx-auto mb-2" />,
+              title: 'Photography',
+              desc: 'Capturing timeless moments with our award-winning photography team.',
+              image: 'https://images.unsplash.com/photo-1520854221256-17451cc330e7?q=80&w=1470&auto=format&fit=crop',
+              colSpan: 'lg:col-span-1',
             },
             {
-              title: 'Entertainment & Music',
-              desc: 'Live bands, DJs, and entertainment to keep your guests celebrating all night.',
-              icon: <MusicNoteIcon sx={{ fontSize: { xs: 40, sm: 48, md: 56 }, color: '#8B4513' }} className="mx-auto mb-2" />,
+              title: 'Floral & Decor',
+              desc: 'Transforming spaces with stunning floral arrangements and bespoke styling.',
+              image: 'https://images.unsplash.com/photo-1507504031981-a2368c6e1916?q=80&w=1470&auto=format&fit=crop',
+              colSpan: 'lg:col-span-1',
             },
             {
-              title: 'Decor & Styling',
-              desc: 'Personalized decor, floral arrangements, and styling for a beautiful, unique celebration.',
-              icon: <LocalFloristIcon sx={{ fontSize: { xs: 40, sm: 48, md: 56 }, color: '#8B4513' }} className="mx-auto mb-2" />,
+              title: 'Entertainment',
+              desc: 'Curating the perfect atmosphere with world-class musicians and performers.',
+              image: 'https://images.unsplash.com/photo-1516280440614-6697288d5d38?q=80&w=1470&auto=format&fit=crop', // Updated to a more reliable concert/band image
+              colSpan: 'lg:col-span-3',
             },
           ].map((service, idx) => (
             <motion.div
               key={service.title}
-              className="p-6 md:p-10 lg:p-16 bg-white rounded-2xl shadow-xl flex flex-col items-center"
-              whileHover={{ 
-                scale: 1.05,
-                boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)",
-                transition: { duration: 0.3 }
-              }}
+              className={`group relative overflow-hidden rounded-3xl shadow-lg h-80 ${service.colSpan || ''}`}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: idx * 0.1 }}
+              transition={{ duration: 0.6, delay: idx * 0.1 }}
               viewport={{ once: true }}
             >
-              <motion.div
-                whileHover={{ rotate: 360 }}
-                transition={{ duration: 0.5 }}
-              >
-                {service.icon}
-              </motion.div>
-              <h3 className="mt-6 md:mt-8 text-lg md:text-xl font-bold text-gray-900 font-playfair">{service.title}</h3>
-              <p className="mt-4 md:mt-5 text-sm md:text-base text-gray-600 font-playfair">{service.desc}</p>
+              {/* Background Image */}
+              <div className="absolute inset-0">
+                <img
+                  src={service.image}
+                  alt={service.title}
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  onError={(e) => {
+                    e.target.onerror = null;
+                    e.target.src = 'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=2070&auto=format&fit=crop'; // Fallback image
+                  }}
+                />
+                {/* Stronger Gradient Overlay for Visibility */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-90 transition-opacity duration-300" />
+              </div>
+
+              {/* Content */}
+              <div className="absolute inset-0 p-8 flex flex-col justify-end text-white">
+                <motion.div
+                  initial={{ y: 0 }}
+                  whileHover={{ y: -5 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <h3 className="text-2xl font-bold font-playfair mb-2 drop-shadow-md">{service.title}</h3>
+                  <p className="text-white/95 text-sm font-light leading-relaxed max-w-md opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-500 drop-shadow-sm">
+                    {service.desc}
+                  </p>
+                  <div className="w-12 h-1 bg-[#DEB887] mt-4 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left shadow-sm" />
+                </motion.div>
+              </div>
             </motion.div>
           ))}
         </div>
       </Container>
 
       {/* Modern Packages Section */}
-      <Container className="py-20">
-        <Typography 
-          variant="h2" 
-          className="font-bold text-center mb-4 text-[#8B4513] font-playfair"
-          style={{ fontSize: '2.5rem' }}
-        >
-          Our Packages
-        </Typography>
-        <Typography 
-          className="text-center mb-16 text-[#6D4C41]"
-          style={{ fontSize: '0.875rem' }}
-        >
-          Choose the perfect plan for your special day
-        </Typography>
-        <Grid container spacing={4} justifyContent="center" className="mt-8">
+      <Container className="py-20 sm:py-24 lg:py-32">
+        <div className="text-center mb-16 flex flex-col items-center">
+          <Typography
+            variant="h2"
+            className="font-bold leading-tight text-[#3E2723] font-playfair mb-4"
+            style={{ fontSize: '3rem' }}
+          >
+            Signature Experiences
+          </Typography>
+          <Typography className="text-lg text-[#5D4037] max-w-2xl mx-auto font-playfair text-center">
+            Choose the perfect level of service for your celebration, customized to your unique vision.
+          </Typography>
+        </div>
+
+        <Grid container spacing={3} justifyContent="center">
           {[
             {
-              name: 'Basic',
-              price: 'LKR 150,000',
-              subtitle: 'Essential Wedding Package',
-              features: ['Venue Setup', 'Basic Decor', 'Support', 'Standard Photography'],
-              color: 'from-blue-200 to-blue-400',
+              name: 'Day Package',
+              subtitle: 'Stress-Free Coordination',
+              image: 'https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?q=80&w=1469&auto=format&fit=crop',
+              features: ['Day-of Coordination', 'Vendor Management', 'Timeline Execution', 'Peace of Mind'],
+              details: 'Your peace of mind on your wedding day will be worth every rupee that you have spent on your big day.',
               highlight: false,
-              details: 'Perfect for intimate gatherings and simple celebrations.',
             },
             {
-              name: 'Premium',
-              price: 'LKR 350,000',
-              subtitle: 'Most Popular',
-              features: ['Venue Setup', 'Premium Decor', 'Catering', 'Professional Photography', 'Live Music'],
-              color: 'from-yellow-200 to-yellow-400',
+              name: 'Half Package',
+              subtitle: 'Flexible Planning Support',
+              image: 'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=2070&auto=format&fit=crop',
+              features: ['Partial Planning', 'Vendor Recommendations', 'Design Consultation', 'Guidance till Dream Day'],
+              details: 'We can help you at any stage of the wedding planning, till your dream day.',
               highlight: true,
-              details: 'Our most popular package for a complete, memorable wedding experience.',
             },
             {
-              name: 'Deluxe',
-              price: 'LKR 600,000',
-              subtitle: 'Luxury Experience',
-              features: ['All Premium Features', 'Luxury Transport', 'Personal Planner', 'Fireworks Show', 'Custom Cake'],
-              color: 'from-pink-200 to-pink-400',
+              name: 'Full Package',
+              subtitle: 'Complete Guidance A-Z',
+              image: 'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?q=80&w=1469&auto=format&fit=crop',
+              features: ['Full Service Planning', 'Budget Management', 'Concept & Design', 'Unlimited Support'],
+              details: 'This package is for the couples who want guidance in planning their wedding from the beginning to the end.',
               highlight: false,
-              details: 'For those who want the ultimate, luxury wedding celebration.',
             },
           ].map((pkg, idx) => (
-            <Grid item xs={12} sm={6} md={4} key={pkg.name}>
+            <Grid item xs={12} md={4} key={pkg.name}>
               <motion.div
-                initial={{ opacity: 0, y: 60, rotateY: 30 }}
-                whileInView={{ opacity: 1, y: 0, rotateY: 0 }}
-                whileHover={{ scale: 1.07, rotateY: pkg.highlight ? 8 : 4, boxShadow: '0 16px 40px 0 rgba(222, 184, 135, 0.25)' }}
-                transition={{ duration: 0.7, delay: idx * 0.15, type: 'spring', stiffness: 60 }}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: idx * 0.15 }}
                 viewport={{ once: true }}
-                style={{ perspective: 1000 }}
+                className="h-full"
               >
                 <Card
-                  className={`shadow-2xl rounded-2xl border-0 overflow-hidden relative bg-gradient-to-br ${pkg.color} hover:shadow-3xl transition-transform duration-300`}
+                  className={`h-full rounded-2xl overflow-hidden relative transition-all duration-300 group hover:shadow-xl border-0 ${pkg.highlight ? 'ring-2 ring-[#DEB887]' : ''}`}
                   sx={{
-                    background: 'rgba(255,255,255,0.25)',
-                    color: '#3E2723',
-                    maxWidth: 330,
-                    width: '100%',
-                    height: 480,
-                    minHeight: 480,
                     display: 'flex',
                     flexDirection: 'column',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    backdropFilter: 'blur(18px)',
-                    boxShadow: pkg.highlight ? '0 16px 40px 0 rgba(222, 184, 135, 0.25)' : '0 8px 32px 0 rgba(31, 38, 135, 0.10)',
-                    border: pkg.highlight ? '2.5px solid #DEB887' : 'none',
+                    background: '#fff',
+                    maxWidth: '360px', // Limit width for better compactness
+                    margin: '0 auto',
                   }}
                 >
-                  {pkg.highlight && (
-                    <span className="absolute top-4 right-4 bg-[#DEB887] text-[#3E2723] px-3 py-1 rounded-full text-xs font-bold z-10 shadow">Most Popular</span>
-                  )}
-                  <CardContent className="flex flex-col items-center text-center w-full relative z-10 flex-1" sx={{ width: '100%', flex: '1 1 auto', height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', alignItems: 'center', overflow: 'hidden' }}>
-                    <Typography variant="h6" className="font-playfair" sx={{ color: '#8B4513', fontWeight: 700, fontSize: '1.3rem', mt: 3, mb: 0, lineHeight: 1 }}>{pkg.name}</Typography>
-                    <Typography variant="caption" className="mb-2" sx={{ color: pkg.highlight ? '#8B4513' : '#6D4C41', fontWeight: 600, mt: -3, mb: -3 }}>{pkg.subtitle}</Typography>
-                    <Typography variant="body2" className="mb-4" sx={{ color: '#3E2723', fontWeight: 400 }}>{pkg.details}</Typography>
-                    <ul className="text-[#3E2723] mb-6 space-y-1 text-left w-full max-w-xs mx-auto">
-                      {pkg.features.map((f, i) => (
-                        <li key={i} className="flex items-center gap-2">
-                          <span className="text-[#DEB887]">•</span> {f}
-                        </li>
+                  {/* Image Header - Reduced Height */}
+                  <div className="relative h-40 overflow-hidden">
+                    <img
+                      src={pkg.image}
+                      alt={pkg.name}
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      onError={(e) => {
+                        e.target.onerror = null;
+                        e.target.src = 'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=2070&auto=format&fit=crop';
+                      }}
+                    />
+                    <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-300" />
+                    {pkg.highlight && (
+                      <div className="absolute top-3 right-3 bg-[#DEB887] text-white px-3 py-0.5 rounded-full text-xs font-medium shadow-md backdrop-blur-sm">
+                        Booking Now Open
+                      </div>
+                    )}
+                  </div>
+
+                  <CardContent className="flex flex-col flex-grow p-5">
+                    <Typography variant="h5" className="font-playfair font-bold text-[#3E2723] mb-1 text-lg">
+                      {pkg.name}
+                    </Typography>
+                    <Typography variant="subtitle2" className="text-[#8B4513] font-medium mb-3 text-sm">
+                      {pkg.subtitle}
+                    </Typography>
+
+                    <Typography className="text-[#5D4037] mb-4 text-sm leading-snug min-h-[40px]">
+                      {pkg.details}
+                    </Typography>
+
+                    <div className="mt-auto space-y-2 mb-5">
+                      {pkg.features.map((feature, i) => (
+                        <div key={i} className="flex items-center gap-2">
+                          <div className="w-4 h-4 rounded-full bg-[#DEB887]/20 flex items-center justify-center flex-shrink-0">
+                            <svg className="w-2.5 h-2.5 text-[#8B4513]" fill="currentColor" viewBox="0 0 20 20">
+                              <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                            </svg>
+                          </div>
+                          <span className="text-[#5D4037] text-xs font-medium">{feature}</span>
+                        </div>
                       ))}
-                    </ul>
-                    <Typography variant="h4" className="mt-auto font-bold" sx={{ color: '#3E2723' }}>{pkg.price}</Typography>
+                    </div>
+
+                    <button className="w-full py-2.5 rounded-lg bg-transparent border-2 border-[#8B4513] text-[#8B4513] text-sm font-semibold hover:bg-white hover:text-[#8B4513] hover:scale-105 transition-all duration-300 shadow-sm hover:shadow-lg uppercase tracking-wider">
+                      Get Now
+                    </button>
                   </CardContent>
-                  {/* Glassy overlay for extra glassmorphism */}
-                  <div className="absolute inset-0 z-0 pointer-events-none" style={{ background: 'rgba(255,255,255,0.18)', backdropFilter: 'blur(12px)' }} />
                 </Card>
               </motion.div>
             </Grid>
@@ -318,19 +651,20 @@ const Home = () => {
         </Grid>
       </Container>
 
+
       {/* Modern Testimonials Section (Rareblocks-inspired) */}
-      <section className="py-10 sm:py-16 lg:py-20 relative">
+      < section className="py-10 sm:py-16 lg:py-20 relative" >
         <div className="px-2 sm:px-4 mx-auto max-w-7xl sm:px-6 lg:px-8 flex flex-col items-center">
           <div className="text-center">
-            <Typography 
-              variant="body1" 
+            <Typography
+              variant="body1"
               className="font-medium text-gray-600 font-playfair"
               style={{ fontSize: '0.875rem' }}
             >
               2,157 people have said how good Rareblocks
             </Typography>
-            <Typography 
-              variant="h2" 
+            <Typography
+              variant="h2"
               className="mt-4 font-bold text-gray-900 font-playfair"
               style={{ fontSize: '2.5rem' }}
             >
@@ -349,7 +683,7 @@ const Home = () => {
           {/* Blurred Gradient Background */}
           <div className="relative mt-10 md:mt-24 md:order-2 w-full">
             <div className="absolute -inset-x-1 inset-y-16 md:-inset-x-2 md:-inset-y-6 pointer-events-none z-0">
-              <div className="w-full h-full max-w-5xl mx-auto rounded-3xl opacity-30 blur-lg filter" style={{background: 'linear-gradient(90deg, #44ff9a -0.55%, #44b0ff 22.86%, #8b44ff 48.36%, #ff6644 73.33%, #ebff70 99.34%)'}}></div>
+              <div className="w-full h-full max-w-5xl mx-auto rounded-3xl opacity-30 blur-lg filter" style={{ background: 'linear-gradient(90deg, #44ff9a -0.55%, #44b0ff 22.86%, #8b44ff 48.36%, #ff6644 73.33%, #ebff70 99.34%)' }}></div>
             </div>
             <div className="relative grid max-w-lg grid-cols-1 gap-6 mx-auto md:max-w-none lg:gap-10 md:grid-cols-3 z-10">
               {testimonials.map((testimonial, idx) => (
@@ -390,8 +724,8 @@ const Home = () => {
             </div>
           </div>
         </div>
-      </section>
-    </div>
+      </section >
+    </div >
   );
 };
 
