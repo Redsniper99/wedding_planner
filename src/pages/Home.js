@@ -358,8 +358,11 @@ const Home = () => {
           {recentAlbums.length === 0 ? (
             // Fallback if no albums
             <div className="col-span-full text-center py-12">
-              <Typography className="text-[#5D4037] font-playfair">
-                No albums yet. Add folders to <code className="bg-[#8B4513]/10 px-2 py-1 rounded text-sm">public/images/recent-work/</code>
+              <Typography className="text-[#5D4037] font-playfair text-xl">
+                Our gallery is being updated. Please check back soon!
+              </Typography>
+              <Typography className="text-sm text-gray-400 mt-2">
+                (Debug: No albums loaded from {process.env.PUBLIC_URL}/gallery-data.json)
               </Typography>
             </div>
           ) : (
