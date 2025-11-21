@@ -239,16 +239,16 @@ const Gallery = () => {
                         >
                             {/* Close Button - Top Right */}
                             <button
-                                className="absolute top-6 right-6 text-white z-[10000] bg-black p-3 rounded-full hover:bg-gray-800 hover:scale-110 transition-all shadow-lg border border-white/20"
+                                className="absolute top-4 right-4 md:top-6 md:right-6 z-[10000] p-2 md:p-3 rounded-full shadow-lg transition-all hover:scale-110 bg-white text-black md:bg-black md:text-white md:border md:border-white/20"
                                 onClick={closeAlbum}
                             >
-                                <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <svg className="w-6 h-6 md:w-8 md:h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M6 18L18 6M6 6l12 12" />
                                 </svg>
                             </button>
 
                             {/* Album Info - Top Left */}
-                            <div className="absolute top-6 left-6 text-white z-50 bg-black/50 backdrop-blur-sm px-6 py-3 rounded-full">
+                            <div className="absolute top-6 left-6 text-white z-50 bg-black/50 backdrop-blur-sm px-6 py-3 rounded-full hidden md:block">
                                 <h2 className="font-playfair font-bold text-lg">{selectedAlbum.name}</h2>
                                 <p className="text-sm opacity-90">
                                     {currentImageIndex + 1} / {selectedAlbum.images.length}
@@ -314,9 +314,9 @@ const Gallery = () => {
                                 </div>
                             </div>
 
-                            {/* Thumbnail Strip */}
+                            {/* Thumbnail Strip - Left Aligned & Scrollable */}
                             {selectedAlbum.images.length > 1 && (
-                                <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 overflow-x-auto max-w-full px-4 py-2 bg-black/50 backdrop-blur-sm rounded-full">
+                                <div className="absolute bottom-0 left-0 w-full flex gap-2 overflow-x-auto px-4 py-4 bg-black/50 backdrop-blur-sm scrollbar-hide justify-start items-center">
                                     {selectedAlbum.images.map((img, idx) => (
                                         <button
                                             key={idx}
