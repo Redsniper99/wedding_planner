@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { AppBar, Toolbar, IconButton, Button } from '@mui/material';
+import { AppBar, Toolbar, IconButton, Button, Collapse, Box, List, ListItemButton, ListItemText } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
 import { AnimatePresence, motion } from 'framer-motion';
@@ -31,12 +31,15 @@ const Navbar = () => {
     { text: 'Contact', path: '/contact' },
   ];
 
+  const openMenu = () => setMobileMenuOpen(true);
+  const closeMenu = () => setMobileMenuOpen(false);
+
   return (
     <AppBar
       position="fixed"
       className={`backdrop-blur-md shadow-lg transition-all duration-500 ease-in-out ${!scrolled ? 'rounded-lg' : ''}`}
       sx={{
-        backdropFilter: 'blur(12px)',
+        backdropFilter: 'none',
         backgroundColor: 'rgba(0, 0, 0, 0.6)',
         left: !scrolled ? '80px' : 0,
         right: !scrolled ? '80px' : 0,
@@ -53,7 +56,7 @@ const Navbar = () => {
           right: !scrolled ? '16px' : 0,
           top: !scrolled ? '16px' : 0,
           width: !scrolled ? 'calc(100vw - 32px)' : '100vw',
-        }
+        },
       }}
     >
       <Toolbar className="justify-between" sx={{ minHeight: { xs: 64, md: 80 } }}>
@@ -90,84 +93,77 @@ const Navbar = () => {
           ))}
         </div>
 
-        {/* Mobile Menu Button - Only visible on mobile */}
+        {/* Mobile Menu Button */}
         <div className="md:hidden">
           <IconButton
             color="inherit"
-            aria-label="open drawer"
+            aria-label={mobileMenuOpen ? 'close menu' : 'open menu'}
             edge="start"
-            onClick={() => setMobileMenuOpen(true)}
+            onClick={mobileMenuOpen ? closeMenu : openMenu}
             sx={{ color: 'rgba(255, 255, 255, 0.95)' }}
           >
-            <MenuIcon />
+            {mobileMenuOpen ? <CloseIcon /> : <MenuIcon />}
           </IconButton>
         </div>
       </Toolbar>
 
-      {/* Custom Mobile Menu */}
-      <AnimatePresence>
-        {mobileMenuOpen && (
+      {/* Collapsible dropdown for Mobile */}
+      <Collapse in={mobileMenuOpen} timeout="auto" unmountOnExit>
+        <Box
+          sx={{
+            backgroundColor: 'transparent',
+            color: 'white',
+            mt: 2,
+            mb: 2,
+            mx: { xs: 2, md: 0 },
+          }}
+        >
+          {/* Animated menu items */}
           <motion.div
-            className="fixed left-0 right-0 z-50 flex items-start justify-center"
-            style={{ top: 64 }}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.25 }}
+            initial="hidden"
+            animate="visible"
+            exit="hidden"
+            variants={{
+              hidden: { opacity: 0 },
+              visible: {
+                opacity: 1,
+                transition: { staggerChildren: 0.1, delayChildren: 0.2 },
+              },
+            }}
           >
-            {/* Overlay below navbar */}
-            <motion.div
-              className="absolute left-0 right-0 bottom-0 bg-black/30"
-              style={{ top: 0 }}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.25 }}
-            />
-            {/* Menu Card */}
-            <motion.div
-              className="relative w-full max-w-md mx-auto mt-4 rounded-2xl shadow-2xl border border-gray-200"
-              style={{ background: 'white' }}
-              initial={{ y: -40, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              exit={{ y: -40, opacity: 0 }}
-              transition={{ type: 'spring', stiffness: 320, damping: 32, duration: 0.35 }}
-            >
-              <div className="flex justify-between items-center px-6">
-                <Link to="/" className="flex items-center" onClick={() => setMobileMenuOpen(false)}>
-                  <img
-                    src={isAboutOrContact ? "/images/logo_2.png" : "/images/logo_2.png"}
-                    alt="Wedding Planner Logo"
-                    className="h-6 w-auto mr-2"
-                  />
-                </Link>
-                <IconButton onClick={() => setMobileMenuOpen(false)}>
-                  <CloseIcon />
-                </IconButton>
-              </div>
-              <nav className="flex flex-col  items-center justify-center mb-6">
-                {menuItems.map((item) => (
-                  <Link
-                    key={item.text}
+            <List sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+              {menuItems.map((item) => (
+                <motion.div
+                  key={item.text}
+                  variants={{
+                    hidden: { opacity: 0, y: 20 },
+                    visible: { opacity: 1, y: 0 },
+                  }}
+                >
+                  <ListItemButton
+                    component={Link}
                     to={item.path}
-                    className="flex justify-center items-center w-full max-w-xs rounded-xl my-2 py-3 px-4 text-base font-semibold text-black transition-all duration-200 hover:text-[#8B4513] focus:text-[#8B4513] text-center font-playfair"
-                    style={{
-                      background: 'white',
-                      boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06), 0 0 0 1px rgba(0, 0, 0, 0.05)'
+                    onClick={closeMenu}
+                    sx={{
+                      justifyContent: 'center',
+                      fontFamily: '"Cormorant Garamond", serif',
+                      fontSize: '1.3rem',
+                      fontWeight: 400,
+                      color: 'white',
+                      textAlign: 'center',
+                      '&:hover': { backgroundColor: 'rgba(255,255,255,0.1)' },
                     }}
-                    onClick={() => setMobileMenuOpen(false)}
                   >
-                    {item.text.charAt(0).toUpperCase() + item.text.slice(1).toLowerCase()}
-                  </Link>
-                ))}
-
-              </nav>
-            </motion.div>
+                    <ListItemText primary={item.text} sx={{ textAlign: 'center' }} />
+                  </ListItemButton>
+                </motion.div>
+              ))}
+            </List>
           </motion.div>
-        )}
-      </AnimatePresence>
+        </Box>
+      </Collapse>
     </AppBar>
   );
 };
 
-export default Navbar; 
+export default Navbar;

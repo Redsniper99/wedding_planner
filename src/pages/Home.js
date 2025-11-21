@@ -31,19 +31,19 @@ const Home = () => {
 
   const testimonials = [
     {
-      name: 'Sarah & John',
-      text: 'The team made our wedding day absolutely magical. Everything was perfect!',
-      image: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=facearea&w=100&h=100&facepad=2',
+      name: 'Sanduni & Kasun',
+      text: 'Aney, these people are really amazing! They organized everything so nicely. Our wedding was just perfect, no? All our relatives also said it was the best wedding they attended.',
+      image: 'https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?auto=format&fit=facearea&w=100&h=100&facepad=2',
     },
     {
-      name: 'Emily & Michael',
-      text: 'Professional, attentive, and creative. They exceeded our expectations!',
-      image: 'https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=facearea&w=100&h=100&facepad=2',
+      name: 'Dilini & Ravindu',
+      text: 'These guys are top class! Very professional and they understood exactly what we wanted. From poruwa ceremony to reception, everything was done properly. Highly recommend!',
+      image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=facearea&w=100&h=100&facepad=2',
     },
     {
-      name: 'Lisa & David',
-      text: 'Our dream wedding came true thanks to their amazing planning and execution.',
-      image: 'https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=facearea&w=100&h=100&facepad=2',
+      name: 'Thilini & Chamara',
+      text: 'We were so tensed about the wedding planning, but these people made it so easy for us. They handled everything nicely and our day was absolutely beautiful. Thank you so much!',
+      image: 'https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?auto=format&fit=facearea&w=100&h=100&facepad=2',
     },
   ];
 
@@ -142,14 +142,14 @@ const Home = () => {
                 transition={{ duration: 0.8, delay: 0.3 }}
                 className="mb-4"
               >
-                <h1 className="font-playfair font-bold text-white leading-tight drop-shadow-lg">
-                  <span className="block text-4xl mb-2">
+                <h1 className="text-white leading-tight drop-shadow-lg">
+                  <span className="block text-5xl mb-2 font-cormorant italic font-light">
                     Make Your
                   </span>
-                  <span className="block text-5xl mb-2 text-[#DEB887]">
+                  <span className="block text-7xl mb-4 text-[#DEB887] font-great-vibes py-2">
                     Dream Wedding
                   </span>
-                  <span className="block text-4xl text-white/95">
+                  <span className="block text-5xl font-cormorant font-light">
                     A Reality
                   </span>
                 </h1>
@@ -160,9 +160,9 @@ const Home = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.5 }}
-                className="text-white text-sm leading-relaxed max-w-md mx-auto mb-8 font-light"
+                className="text-white text-lg mb-8 font-montserrat font-light"
               >
-                Expert planning & flawless execution for your perfect day
+                Creating unforgettable moments with elegance, precision, and a touch of magic
               </motion.p>
 
               {/* Mobile CTA */}
@@ -216,7 +216,7 @@ const Home = () => {
             </div>
 
             {/* DESKTOP VERSION - Shows only on md (768px) and larger screens */}
-            <div className="hidden md:block">
+            <div className="hidden md:block pt-32">
               {/* Main Heading - Staggered Animation */}
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
@@ -224,11 +224,11 @@ const Home = () => {
                 transition={{ duration: 0.8, delay: 0.5 }}
                 className="mb-6"
               >
-                <h1 className="font-playfair font-bold text-white leading-tight">
-                  <span className="block text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl mb-2">
+                <h1 className="text-white leading-tight">
+                  <span className="block text-5xl sm:text-6xl md:text-7xl lg:text-8xl mb-4 font-cormorant font-light italic">
                     Your Dream Wedding
                   </span>
-                  <span className="block text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-white">
+                  <span className="block text-6xl sm:text-7xl md:text-8xl lg:text-9xl text-[#DEB887] font-great-vibes py-4">
                     Begins Here
                   </span>
                 </h1>
@@ -239,7 +239,7 @@ const Home = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.7 }}
-                className="text-white text-base sm:text-lg md:text-xl lg:text-2xl max-w-3xl mx-auto mb-10 font-light leading-relaxed"
+                className="text-white text-base sm:text-lg md:text-xl lg:text-2xl max-w-3xl mx-auto mb-10 font-montserrat font-light leading-relaxed"
               >
                 Creating unforgettable moments with elegance, precision, and a touch of magic
               </motion.p>
@@ -633,79 +633,95 @@ const Home = () => {
       </Container>
 
 
-      {/* Modern Testimonials Section (Rareblocks-inspired) */}
-      < section className="py-10 sm:py-16 lg:py-20 relative" >
-        <div className="px-2 sm:px-4 mx-auto max-w-7xl sm:px-6 lg:px-8 flex flex-col items-center">
-          <div className="text-center">
-            <Typography
-              variant="body1"
-              className="font-medium text-gray-600 font-playfair"
-              style={{ fontSize: '0.875rem' }}
-            >
-              2,157 people have said how good Rareblocks
-            </Typography>
+      {/* Modern Card-Based Testimonials Section */}
+      <section className="py-16 sm:py-20 lg:py-24 bg-gradient-to-b from-white to-gray-50">
+        <div className="px-4 sm:px-6 mx-auto max-w-7xl lg:px-8">
+          {/* Section Header */}
+          <div className="text-center mb-12 sm:mb-16">
             <Typography
               variant="h2"
-              className="mt-4 font-bold text-gray-900 font-playfair"
-              style={{ fontSize: '2.5rem' }}
+              className="font-cormorant font-light text-gray-900 mb-3"
+              style={{ fontSize: '2.75rem' }}
             >
-              Our happy clients say about us
+              What Our Clients Say
             </Typography>
+
           </div>
-          <div className="mt-8 text-center md:mt-16 md:order-3">
-            <button
-              type="button"
-              className="pb-2 text-base font-bold leading-7 text-gray-900 transition-all duration-200 border-b-2 border-gray-900 hover:border-gray-600 font-playfair focus:outline-none focus:ring-1 focus:ring-gray-900 focus:ring-offset-2 hover:text-gray-600 bg-transparent cursor-pointer"
-              aria-label="Check all 2,157 reviews"
-            >
-              Check all 2,157 reviews
-            </button>
-          </div>
-          {/* Blurred Gradient Background */}
-          <div className="relative mt-10 md:mt-24 md:order-2 w-full">
-            <div className="absolute -inset-x-1 inset-y-16 md:-inset-x-2 md:-inset-y-6 pointer-events-none z-0">
-              <div className="w-full h-full max-w-5xl mx-auto rounded-3xl opacity-30 blur-lg filter" style={{ background: 'linear-gradient(90deg, #44ff9a -0.55%, #44b0ff 22.86%, #8b44ff 48.36%, #ff6644 73.33%, #ebff70 99.34%)' }}></div>
-            </div>
-            <div className="relative grid max-w-lg grid-cols-1 gap-6 mx-auto md:max-w-none lg:gap-10 md:grid-cols-3 z-10">
-              {testimonials.map((testimonial, idx) => (
-                <motion.div
-                  key={testimonial.name}
-                  initial={{ opacity: 0, y: 40 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.7, delay: idx * 0.15, type: 'spring', stiffness: 60 }}
-                  viewport={{ once: true }}
-                  className="flex flex-col overflow-hidden shadow-2xl rounded-3xl"
-                  style={{ boxShadow: '0 12px 32px 0 rgba(222, 184, 135, 0.25), 0 2px 8px 0 rgba(62, 39, 35, 0.10)' }}
+
+          {/* Testimonials Cards Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+            {testimonials.map((testimonial, idx) => (
+              <motion.div
+                key={testimonial.name}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: idx * 0.1 }}
+                viewport={{ once: true }}
+                className="h-full"
+              >
+                <Card
+                  sx={{
+                    height: '100%',
+                    borderRadius: '16px',
+                    border: '1px solid',
+                    borderColor: 'grey.100',
+                    boxShadow: '0 2px 8px rgba(0, 0, 0, 0.08)',
+                    transition: 'all 0.3s ease',
+                    position: 'relative',
+                    '&:hover': {
+                      borderColor: 'grey.200',
+                      boxShadow: '0 12px 24px rgba(0, 0, 0, 0.12)',
+                      transform: 'translateY(-4px)',
+                    },
+                  }}
                 >
-                  <div className="flex flex-col justify-between flex-1 p-5 sm:p-6 bg-white lg:py-8 lg:px-7 rounded-3xl backdrop-blur-md border border-[#DEB887] h-full">
-                    <div className="flex-1">
-                      {/* Stars */}
-                      <div className="flex items-center justify-center">
-                        {[...Array(5)].map((_, i) => (
-                          <svg key={i} className="w-5 h-5 text-[#FDB241]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                          </svg>
-                        ))}
-                      </div>
-                      {/* Testimonial Text */}
-                      <blockquote className="flex-1 mt-6 sm:mt-8">
-                        <Typography className="text-base sm:text-lg leading-relaxed text-gray-900 font-playfair">“{testimonial.text}”</Typography>
+                  <CardContent sx={{ p: 4, height: '100%', display: 'flex', flexDirection: 'column' }}>
+                    {/* Quote Icon */}
+                    <div style={{ position: 'absolute', top: '24px', right: '24px', opacity: 0.1, transition: 'opacity 0.3s' }}>
+                      <svg style={{ width: '48px', height: '48px', color: '#111827' }} fill="currentColor" viewBox="0 0 32 32">
+                        <path d="M9.352 4C4.456 7.456 1 13.12 1 19.36c0 5.088 3.072 8.064 6.624 8.064 3.36 0 5.856-2.688 5.856-5.856 0-3.168-2.208-5.472-5.088-5.472-.576 0-1.344.096-1.536.192.48-3.264 3.552-7.104 6.624-9.024L9.352 4zm16.512 0c-4.8 3.456-8.256 9.12-8.256 15.36 0 5.088 3.072 8.064 6.624 8.064 3.264 0 5.856-2.688 5.856-5.856 0-3.168-2.304-5.472-5.184-5.472-.576 0-1.248.096-1.44.192.48-3.264 3.456-7.104 6.528-9.024L25.864 4z" />
+                      </svg>
+                    </div>
+
+                    {/* Testimonial Content */}
+                    <div style={{ position: 'relative', zIndex: 10, flex: 1, display: 'flex', flexDirection: 'column' }}>
+                      {/* Text */}
+                      <blockquote style={{ marginBottom: '24px', flex: 1 }}>
+                        <Typography className="text-gray-700 font-montserrat leading-relaxed text-base">
+                          "{testimonial.text}"
+                        </Typography>
                       </blockquote>
-                    </div>
-                    {/* Avatar and Name */}
-                    <div className="flex items-center mt-6 sm:mt-8 justify-center">
-                      <img className="flex-shrink-0 object-cover rounded-full w-10 h-10 sm:w-11 sm:h-11 border-2 border-[#DEB887]" src={testimonial.image} alt={testimonial.name} />
-                      <div className="ml-3 sm:ml-4 text-left">
-                        <Typography className="text-sm sm:text-base font-bold text-gray-900 font-playfair">{testimonial.name}</Typography>
+
+                      {/* Divider */}
+                      <div style={{ width: '48px', height: '1px', background: 'linear-gradient(to right, rgb(209, 213, 219), transparent)', marginBottom: '24px' }}></div>
+
+                      {/* Author Info */}
+                      <div style={{ display: 'flex', alignItems: 'center' }}>
+                        <div style={{ position: 'relative' }}>
+                          <img
+                            style={{ width: '56px', height: '56px', borderRadius: '50%', objectFit: 'cover', border: '2px solid rgb(243, 244, 246)' }}
+                            src={testimonial.image}
+                            alt={testimonial.name}
+                          />
+                          <div style={{ position: 'absolute', bottom: '-4px', right: '-4px', width: '20px', height: '20px', backgroundColor: 'rgb(34, 197, 94)', borderRadius: '50%', border: '2px solid white' }}></div>
+                        </div>
+                        <div style={{ marginLeft: '16px' }}>
+                          <Typography className="font-cormorant font-semibold text-gray-900 text-lg">
+                            {testimonial.name}
+                          </Typography>
+                          <Typography className="font-montserrat text-sm text-gray-500">
+                            Happy Client
+                          </Typography>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))}
           </div>
         </div>
-      </section >
+      </section>
     </div >
   );
 };
