@@ -146,7 +146,7 @@ const Home = () => {
                   <span className="block text-5xl mb-2 font-cormorant italic font-light">
                     Make Your
                   </span>
-                  <span className="block text-7xl mb-4 text-[#DEB887] font-great-vibes py-2">
+                  <span className="block text-6xl mb-4 text-[#DEB887] font-great-vibes py-2">
                     Dream Wedding
                   </span>
                   <span className="block text-5xl font-cormorant font-light">
