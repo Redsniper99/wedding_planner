@@ -7,9 +7,17 @@ const Home = () => {
   const navigate = useNavigate();
   const [recentAlbums, setRecentAlbums] = useState([]);
 
+  // Helper to fix paths for GitHub Pages
+  const getImagePath = (path) => {
+    if (!path) return '';
+    if (path.startsWith('http')) return path;
+    const cleanPath = path.startsWith('/') ? path.slice(1) : path;
+    return `${process.env.PUBLIC_URL}/${cleanPath}`;
+  };
+
   // Load recent albums
   useEffect(() => {
-    fetch('/gallery-data.json')
+    fetch(`${process.env.PUBLIC_URL}/gallery-data.json`)
       .then(res => res.json())
       .then(data => {
         // Get the 6 most recent albums
@@ -57,7 +65,7 @@ const Home = () => {
         >
           {/* Mobile Background Image - Shows only on screens smaller than md (768px) */}
           <img
-            src="/images/bg2.jpg"
+            src={getImagePath("/images/bg2.jpg")}
             alt="Wedding Background Mobile"
             className="md:hidden absolute min-w-full min-h-full object-cover"
             style={{
@@ -73,7 +81,7 @@ const Home = () => {
 
           {/* Desktop Background Image - Shows only on md (768px) and larger screens */}
           <img
-            src="/images/bg01.jpg"
+            src={getImagePath("/images/bg01.jpg")}
             alt="Wedding Background Desktop"
             className="hidden md:block absolute min-w-full min-h-full object-cover"
             style={{
@@ -368,7 +376,7 @@ const Home = () => {
                 onClick={() => navigate('/gallery')}
               >
                 <img
-                  src={album.coverThumbnail || album.coverImage}
+                  src={getImagePath(album.coverThumbnail || album.coverImage)}
                   alt={album.name}
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                   onError={(e) => {

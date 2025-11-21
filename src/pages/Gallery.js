@@ -9,10 +9,20 @@ const Gallery = () => {
     const [selectedAlbum, setSelectedAlbum] = useState(null);
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
+    // Helper to fix paths for GitHub Pages (or any subdirectory deployment)
+    const getImagePath = (path) => {
+        if (!path) return '';
+        if (path.startsWith('http')) return path; // External URL
+        // Remove leading slash if present to avoid double slashes with PUBLIC_URL
+        const cleanPath = path.startsWith('/') ? path.slice(1) : path;
+        return `${process.env.PUBLIC_URL}/${cleanPath}`;
+    };
+
     // Load gallery data
     useEffect(() => {
         setLoading(true);
-        fetch('/gallery-data.json')
+        // Fix fetch path for GitHub Pages
+        fetch(`${process.env.PUBLIC_URL}/gallery-data.json`)
             .then(res => res.json())
             .then(data => {
                 setAlbums(data);
@@ -196,7 +206,7 @@ const Gallery = () => {
                                         {/* Album Cover Image */}
                                         <div className="relative h-64 bg-gray-100 group">
                                             <img
-                                                src={album.coverThumbnail || album.coverImage}
+                                                src={getImagePath(album.coverThumbnail || album.coverImage)}
                                                 alt={album.name}
                                                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                                                 loading="lazy"
@@ -254,7 +264,7 @@ const Gallery = () => {
                                 >
                                     <motion.img
                                         key={currentImageIndex}
-                                        src={selectedAlbum.images[currentImageIndex]}
+                                        src={getImagePath(selectedAlbum.images[currentImageIndex])}
                                         alt={`${selectedAlbum.name} - ${currentImageIndex + 1}`}
                                         className="max-w-full max-h-full object-contain rounded-lg shadow-2xl cursor-grab active:cursor-grabbing"
                                         initial={{ opacity: 0, scale: 0.95 }}
@@ -317,7 +327,7 @@ const Gallery = () => {
                                                 }`}
                                         >
                                             <img
-                                                src={selectedAlbum.thumbnails ? selectedAlbum.thumbnails[idx] : img}
+                                                src={getImagePath(selectedAlbum.thumbnails ? selectedAlbum.thumbnails[idx] : img)}
                                                 alt={`Thumbnail ${idx + 1}`}
                                                 className="w-full h-full object-cover"
                                             />
