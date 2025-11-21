@@ -51,8 +51,7 @@ const Footer = () => {
         WebkitBackdropFilter: 'blur(20px)',
         borderTop: '1px solid rgba(255, 255, 255, 0.1)', // Glass edge
         boxShadow: '0 -4px 30px rgba(0, 0, 0, 0.3)', // Depth
-        position: 'relative',
-        zIndex: 10
+        position: 'relative'
       }}
     >
       <Container className="py-12">
