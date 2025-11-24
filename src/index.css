@@ -5,6 +5,7 @@
 body {
   margin: 0;
   font-family: 'Montserrat', sans-serif;
+  font-weight: 300;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -19,6 +20,10 @@ body {
 
 .font-montserrat {
   font-family: 'Montserrat', sans-serif;
+}
+
+.font-alumni-sans {
+  font-family: 'Alumni Sans Pinstripe', sans-serif;
 }
 
 code {
